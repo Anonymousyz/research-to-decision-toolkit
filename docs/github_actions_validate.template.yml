@@ -1,0 +1,22 @@
+# GitHub Actions validate template.
+#
+# To enable, copy this file to `.github/workflows/validate.yml` using a token with `workflow` scope.
+# Until then, run `python tests/run_tests.py` locally before pushing.
+
+name: validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e .
+      - run: python tests/run_tests.py

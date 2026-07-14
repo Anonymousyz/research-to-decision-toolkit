@@ -1,0 +1,60 @@
+{
+  "decision": "Should the team pilot the AI procurement-copilot in the supplier-onboarding workflow?",
+  "decision_body": "Risk and Compliance Council (RCC), chaired by the Head of Procurement Operations.",
+  "deadline": "2026-09-30 (next RCC quarterly review).",
+  "default_outcome": "No copilot. The supplier-onboarding process continues unchanged; existing manual reviews remain the bottleneck.",
+  "claims": [
+    {
+      "claim": "Past supplier-onboarding cycles reported 18% rework on document completeness.",
+      "type": "fact",
+      "source": "internal: 2025 supplier-onboarding operations review (synthetic)",
+      "weakest_link": "Rework rate depends on which document class is reviewed; the 18% mixes clean and unclear cases.",
+      "gap_that_changes_mind": "If rework rate is below 8%, manual review cost is likely lower than the cost of any copilot experiment."
+    },
+    {
+      "claim": "An LLM with retrieval over the supplier handbook can answer 70% of completeness questions correctly.",
+      "type": "judgment",
+      "source": "internal: synthetic 50-case pilot (synthetic)",
+      "weakest_link": "The 50-case set was constructed by the proposer and may over-represent easy cases.",
+      "gap_that_changes_mind": "If a new, unseen 50-case set shows <50% accuracy, the copilot does not yet justify a pilot."
+    },
+    {
+      "claim": "Risk and Compliance want a human-in-the-loop check before any decision is sent to a supplier.",
+      "type": "fact",
+      "source": "internal: 2026 RCC charter (synthetic)",
+      "weakest_link": "Different RCC members interpret 'human-in-the-loop' differently — checkpoint vs full review.",
+      "gap_that_changes_mind": "If the operational meaning is not agreed, the pilot cannot specify acceptance criteria."
+    },
+    {
+      "claim": "Mid-market procurement teams using retrieval copilots reduce review time by 30–50% in similar pilots.",
+      "type": "assumption",
+      "source": "public vendor case studies, sample of 3 anonymized writeups (synthetic)",
+      "weakest_link": "Industry sources are vendor-promoted and selection-biased.",
+      "gap_that_changes_mind": "If a peer-reviewed benchmark shows <15% review-time reduction, the projected value is overstated."
+    },
+    {
+      "claim": "Audit logs require capturing: input document, retrieval context, model output, human edit, final supplier email.",
+      "type": "fact",
+      "source": "public: NIST AI RMF Manage function + OWASP LLM Top 10 logging guidance",
+      "weakest_link": "Storage cost and reviewer ergonomics are not yet scoped.",
+      "gap_that_changes_mind": "If logging costs exceed projected copilot savings, the business case collapses."
+    }
+  ],
+  "artifact": {
+    "form": "GitHub toolkit + internal pilot playbook",
+    "readers": [
+      "Risk and Compliance lead at a mid-market procurement team",
+      "Procurement operations manager preparing a pilot",
+      "AI governance analyst at a regulated enterprise",
+      "Researcher-builder publishing similar playbooks"
+    ],
+    "channels": ["GitHub Topics + README", "Internal risk-review mailing list", "Quarterly RCC briefing"],
+    "survives_author": "A GitHub toolkit can be cloned, adapted, and re-used by a different risk team without contacting the original author."
+  },
+  "feedback": {
+    "channels": ["GitHub issues on the public repo", "Internal Q&A in the procurement Slack channel"],
+    "log_filled": true,
+    "next_move_threshold": "If after 8 weeks we see <10% review-time reduction on pilot tasks OR 1+ critical safety finding, stop and re-scope.",
+    "checkin_date": "2026-11-30"
+  }
+}
