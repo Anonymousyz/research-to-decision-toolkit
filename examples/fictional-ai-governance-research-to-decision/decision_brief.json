@@ -36,7 +36,10 @@
       "source_tier": "primary",
       "source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
       "weakest_link": "The framework does not prescribe this local workflow.",
-      "gap_that_changes_mind": "If the council cannot map the pilot to named controls, postpone it."
+      "gap_that_changes_mind": "If the council cannot map the pilot to named controls, postpone it.",
+      "source_checked_by": "Fictional case author",
+      "source_check_method": "human",
+      "source_checked_at": "2026-07-15"
     },
     {
       "claim": "The pilot must test sensitive-information disclosure and excessive agency risks.",
@@ -45,12 +48,16 @@
       "source_tier": "primary",
       "source_url": "https://genai.owasp.org/",
       "weakest_link": "The taxonomy identifies risks but does not prove control effectiveness.",
-      "gap_that_changes_mind": "A critical disclosure or unauthorized action in testing would block the pilot."
+      "gap_that_changes_mind": "A critical disclosure or unauthorized action in testing would block the pilot.",
+      "source_checked_by": "Fictional case author",
+      "source_check_method": "human",
+      "source_checked_at": "2026-07-15"
     }
   ],
   "uncertainties": [
     "The unseen-case accuracy distribution is unknown.",
-    "The cost of complete audit logging is not yet measured."
+    "The cost of complete audit logging is not yet measured.",
+    "The effect of reviewer learning and behavior change over the pilot is unknown."
   ],
   "artifact": {
     "form": "Public fictional case plus internal pilot memo",
@@ -77,5 +84,27 @@
     "checkin_date": "2026-11-30",
     "owner": "Procurement operations analyst",
     "review_question": "Which missing evidence would most likely reverse the pilot decision?"
-  }
+  },
+  "decision_review": {
+    "alternatives": [
+      "Do not start a pilot; continue manual review",
+      "Run a controlled human-in-the-loop pilot",
+      "Deploy broadly without a pilot"
+    ],
+    "decision_criteria": [
+      "Measured rework reduction without critical control failure",
+      "Traceable approvals and source-grounded review",
+      "Ability to stop and roll back within one business day"
+    ],
+    "affected_stakeholders": [
+      "Procurement operations staff",
+      "Risk and compliance reviewers",
+      "Suppliers whose documents are reviewed"
+    ],
+    "reversibility": "The pilot is time-limited, uses a restricted document set, and can return to manual review.",
+    "key_cost_or_tradeoff": "Human review and logging reduce automation speed but preserve accountability.",
+    "premortem_failure": "The pilot appears efficient while silently normalizing unsupported or unauthorized recommendations."
+  },
+  "boundaries": "Fictional case; scope is limited to a controlled document-review pilot with named human approvers.",
+  "out_of_scope": "Autonomous procurement decisions, legal conclusions, supplier sanctions, and broad production deployment are out of scope."
 }

@@ -1,56 +1,57 @@
-# Decision-readiness scorecard
+# Decision-meeting structure scorecard
 
-Score each item **0 (absent)** or **1 (present and reviewable)**. The CLI applies the same 24 checks. A score of 18/24 means “ready for decision meeting,” not approval or implementation authority.
+Score each item **0 (absent)** or **1 (present and structurally reviewable)**. The CLI applies the same 24 checks. A total of 18/24 with no veto means only **structurally ready for an accountable human decision meeting**.
 
 ## A. Decision framing — 6 points
 
-- [ ] Decision question is present.
-- [ ] Decision is written as a question.
+- [ ] Decision question is non-empty.
 - [ ] Accountable decision body is named.
+- [ ] Default outcome is explicit.
 - [ ] Deadline or trigger is explicit.
-- [ ] Default outcome if no decision is made is explicit.
-- [ ] Why-now rationale is explicit.
+- [ ] At least three structured claims are present.
+- [ ] At least three decision-level uncertainties are present.
 
 ## B. Evidence quality — 6 points
 
-- [ ] At least five structured claims are present.
+- [ ] At least three claims are present.
+- [ ] At least two distinct primary-source URLs have human-check declarations.
 - [ ] Every claim names its weakest link.
-- [ ] Every claim names a gap that could change the decision.
-- [ ] Facts, judgments, and assumptions are all represented and labeled.
-- [ ] At least two distinct primary-source URLs are cited.
-- [ ] At least two decision-level uncertainties are named.
+- [ ] At least three uncertainties are present.
+- [ ] Both boundaries and out-of-scope notes are non-empty.
+- [ ] Every claim states what evidence would change the conclusion.
 
-## C. Artifact plan — 6 points
+## C. Decision review — 6 points
+
+- [ ] At least two alternatives are stated.
+- [ ] At least two decision criteria are stated.
+- [ ] At least two affected stakeholder groups are stated.
+- [ ] Reversibility is described.
+- [ ] The key cost or trade-off is described.
+- [ ] A pre-mortem failure is described.
+
+## D. Artifact and feedback — 6 points
 
 - [ ] Artifact form is named.
-- [ ] At least three reader groups are named.
-- [ ] At least two distribution channels are named.
-- [ ] The reusable artifact that survives the author is explicit.
-- [ ] Artifact owner is named.
 - [ ] Artifact acceptance criteria are explicit.
-
-## D. Feedback loop — 6 points
-
-- [ ] At least two feedback channels are named.
-- [ ] Feedback log has begun.
-- [ ] Threshold for the next move is explicit.
-- [ ] Check-in date is set.
+- [ ] Artifact owner is named.
+- [ ] At least one feedback channel is named.
 - [ ] Feedback owner is named.
-- [ ] Review question is explicit.
+- [ ] Feedback log is explicitly marked filled.
 
-## Vetoes
+## Structural vetoes
 
-Any veto overrides the total:
+A veto overrides the total:
 
-- no named decision body;
-- no default outcome;
-- no claim states evidence that could change the decision.
+- `decision_body` is present but empty;
+- `default_outcome` is present but empty;
+- claims exist but none states evidence that would change the conclusion.
+
+Missing required fields and malformed types are schema errors, not low-score substitutes.
 
 ## Result
 
-- **18–24 with no veto:** ready for decision meeting;
-- **14–17 with no veto:** revise before decision meeting;
-- **0–13 with no veto:** not decision-ready;
-- **any score with veto:** do not proceed until the veto is resolved.
+- **18–24 with no veto:** structurally ready for an accountable human decision meeting;
+- **0–17 with no veto:** revise before the meeting;
+- **any total with veto:** resolve the veto before relying on the packet.
 
-The score checks structure, not truth. Sources and conclusions still require domain review.
+The score checks declared structure, not truth. Human source-check fields are attestations, not authentication; sources, conclusions, permissions, and consequences still require accountable domain review.

@@ -1,13 +1,13 @@
 # How to use this toolkit
 
-Pick the artifact form that matches the kind of research you have:
+Use only fictional, public, or explicitly authorized material.
 
-| If you have... | Then use... |
-|---|---|
-| A topic | `templates/problem-framing-canvas.md` |
-| An argument | `templates/evidence-matrix.md` |
-| A conclusion | `templates/decision-memo.md` |
-| A finished memo | `templates/public-artifact-brief.md` |
-| A shipped artifact | `templates/feedback-log.md` |
+| Starting point | Use | Boundary |
+|---|---|---|
+| Topic | `templates/problem-framing-canvas.md` | Name the accountable human decision body |
+| Claims | `templates/evidence-matrix.md` | Separate source, inference, assumption, and disconfirming gap |
+| Decision packet | `templates/decision-memo.md` | Include alternatives, stakeholders, reversibility, and trade-offs |
+| Permission-cleared result | `templates/public-artifact-brief.md` | Anonymization alone is not publication authorization |
+| Circulated artifact | `templates/feedback-log.md` | Record feedback without exposing people or private channels |
 
-The order matters. If you start with `decision-memo.md` and skip the matrix, gaps hide.
+Run `r2d validate` before `r2d score`. Treat the numeric result as a structural checklist and route every consequential conclusion to accountable human review.

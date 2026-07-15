@@ -1,49 +1,47 @@
-
 # Quickstart
 
-You should be able to produce your first decision brief in 10 minutes.
+Use fictional, public, or explicitly authorized material. Do not paste confidential, personal, client, employer, privileged, or restricted information into an external model.
 
 ## 1. Name the decision
 
-Answer four questions in one paragraph:
+Answer five questions:
 
 1. What is the real decision?
 2. Who decides?
-3. When does it decide (or what triggers it)?
+3. When is it due or what triggers it?
 4. What happens by default if no decision is made?
-5. Why is this decision needed now?
+5. Why is it needed now?
 
-If any of these is missing, you do not have a decision. You have a topic. Use the [`problem-framing-canvas.md`](../templates/problem-framing-canvas.md) to convert the topic into a decision.
+If these are not explicit, use [`problem-framing-canvas.md`](../templates/problem-framing-canvas.md) before continuing.
 
-## 2. Collect evidence (lightly)
+## 2. Build reviewable claims
 
-You do not need a literature review. You need 5–15 claims, each with:
+Use [`evidence-matrix.md`](../templates/evidence-matrix.md). For each claim record:
 
-- whether it is a fact, judgment, or assumption;
-- source tier and, for public primary evidence, a direct URL;
-- the weakest link in the claim;
-- the gap that would change your mind.
+- type: fact, judgment, assumption, or recommendation;
+- source tier and source reference;
+- weakest link;
+- evidence that would change the conclusion.
 
-Use the [`evidence-matrix.md`](../templates/evidence-matrix.md).
+For primary and secondary sources, the CLI requires a direct non-reserved HTTP(S) URL plus human checker and date declarations. Those declarations are not source authentication.
 
-## 3. Decide the artifact
+## 3. Add decision review
 
-A research result has more leverage if it becomes an artifact. Use the [`public-artifact-brief.md`](../templates/public-artifact-brief.md) to pick a form. Default forms:
+Record at least two alternatives, two criteria, two affected stakeholder groups, reversibility, key trade-off, and one pre-mortem failure.
 
-| Research type | Default artifact form |
-|---|---|
-| Method / framework | templates + scorecard + example |
-| Decision case | memo + reusable heuristic |
-| Comparative review | table + decision rule |
-| Governance analysis | briefing + checklist |
-| FDE delivery experience | playbook + before-after |
+## 4. Define artifact and feedback
 
-## 4. Score
+Choose a permission-cleared artifact, owner, acceptance criteria, feedback channel, review question, and check-in date. Anonymization alone does not authorize publication.
 
-Use [`decision-readiness-scorecard.md`](../scorecards/decision-readiness-scorecard.md). Threshold for a decision meeting:
+## 5. Validate and score structure
 
-- total ≥ 18/24, no veto, gaps named.
+```bash
+r2d validate examples/fictional-ai-governance-research-to-decision/decision_brief.json
+r2d score examples/fictional-ai-governance-research-to-decision/decision_brief.json
+```
 
-## 5. Ship and log
+The threshold is 18/24 with no veto. It means only “structurally ready for an accountable human decision meeting.”
 
-Distribute the artifact through the appropriate public or authorized internal channel. After 7 days, log feedback in [`feedback-log.md`](../templates/feedback-log.md). After 30 days, update the decision brief with new evidence. Do not publish confidential or personal information merely to satisfy the feedback loop.
+## 6. Circulate and learn
+
+Use an appropriate authorized internal or public channel. Record feedback after circulation and revise the brief when evidence changes. AI-generated challenge drafts are not evidence or independent review.

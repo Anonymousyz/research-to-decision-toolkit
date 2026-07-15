@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.5.0 — 2026-07-15
+
+- Reframed the 24-point result as structural workflow readiness for a human decision meeting, not decision quality.
+- Added a six-point decision-review area covering alternatives, criteria, stakeholders, reversibility, trade-offs, and pre-mortem failure.
+- Required typed artifact/feedback fields and human-declared source checks for primary and secondary evidence.
+- Rejected reserved/example source domains and malformed nested field types.
+- Separated schema errors from structural vetoes and made CLI exit codes reflect invalid, vetoed, and not-ready inputs.
+- Unified duplicate Markdown report implementations and preserved `init`, `--json`, and `-o` compatibility.
+
 ## v0.4.1 — 2026-07-15
 
 - Restored the complete SPDX-standard MIT license text so GitHub can identify the repository license correctly.

@@ -1,80 +1,104 @@
-"""CLI entry point for r2d."""
 from __future__ import annotations
+
 import argparse
 import json
 from pathlib import Path
 import shutil
 import sys
-from .reporting import render_markdown
+
 from .schema import validate
-from .scoring import make_report
+from .scoring import make_report, render_json, render_markdown
 
 
-def _load(path: str) -> tuple[dict | None, str | None]:
+def _load(path: str) -> dict:
     try:
-        data = json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        return None, str(exc)
-    return data, None
+        doc = json.loads(Path(path).read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"JSON parse error: {exc}") from exc
+    if not isinstance(doc, dict):
+        raise ValueError("decision brief must be a JSON object")
+    return doc
+
+
+def _print_validation(errors: list[str], vetoes: list[str]) -> None:
+    for item in errors:
+        print(f"ERROR: {item}")
+    for item in vetoes:
+        print(f"VETO: {item}")
 
 
 def _cmd_validate(path: str) -> int:
-    doc, error = _load(path)
-    if error:
-        print(f"Input error: {error}", file=sys.stderr); return 3
-    ok, errors, veto = validate(doc)
-    if ok:
-        print(f"Valid decision brief: {path}"); return 0
-    print("Validation failed:")
-    for item in errors + [f"VETO: {v}" for v in veto]:
-        print(f" - {item}")
-    return 2
-
-
-def _cmd_score(path: str, as_json: bool = False) -> int:
-    doc, error = _load(path)
-    if error:
-        print(f"Input error: {error}", file=sys.stderr); return 3
-    ok, errors, _ = validate(doc)
+    try:
+        doc = _load(path)
+    except (OSError, ValueError) as exc:
+        print(exc, file=sys.stderr)
+        return 3
+    _, errors, vetoes = validate(doc)
     if errors:
-        print("Validation errors must be fixed before scoring:", file=sys.stderr)
-        for item in errors:
-            print(f" - {item}", file=sys.stderr)
+        _print_validation(errors, vetoes)
+        return 2
+    if vetoes:
+        print("Structurally valid decision brief, but veto items block readiness:")
+        _print_validation([], vetoes)
+        return 1
+    print(f"Valid decision brief: {path}")
+    return 0
+
+
+def _cmd_score(path: str, fmt: str) -> int:
+    try:
+        doc = _load(path)
+    except (OSError, ValueError) as exc:
+        print(exc, file=sys.stderr)
+        return 3
+    _, errors, vetoes = validate(doc)
+    if errors:
+        _print_validation(errors, vetoes)
         return 2
     report = make_report(doc)
-    if as_json:
-        print(json.dumps(report, indent=2, ensure_ascii=False))
+    if fmt == "json":
+        print(render_json(report))
     else:
         print(f"Decision: {report['decision']}")
-        print(f"Total: {report['total']}/{report['max']}")
+        print(f"Total: {report['total']}/{report['maximum']}")
         print(f"Normalized: {report['normalized_pct']}%")
         print(f"Veto: {'yes' if report['veto'] else 'no'}")
         if report["top_gaps"]:
             print("Top gaps:")
             for gap in report["top_gaps"]:
-                print(f" - {gap}")
-    return 1 if report["veto"] else 0
+                print(f"- {gap}")
+    return 1 if report["veto"] or report["total"] < 18 else 0
 
 
 def _cmd_report(path: str, output: str) -> int:
-    doc, error = _load(path)
-    if error:
-        print(f"Input error: {error}", file=sys.stderr); return 3
-    ok, errors, _ = validate(doc)
+    try:
+        doc = _load(path)
+    except (OSError, ValueError) as exc:
+        print(exc, file=sys.stderr)
+        return 3
+    _, errors, vetoes = validate(doc)
     if errors:
-        print("Validation errors must be fixed before reporting", file=sys.stderr); return 2
+        _print_validation(errors, vetoes)
+        return 2
     report = make_report(doc)
-    destination = Path(output); destination.parent.mkdir(parents=True, exist_ok=True)
+    destination = Path(output)
+    destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(render_markdown(doc, report), encoding="utf-8")
     print(f"Wrote {destination}")
-    return 1 if report["veto"] else 0
+    return 1 if report["veto"] or report["total"] < 18 else 0
 
 
 def _cmd_init(output: str) -> int:
-    source = Path(__file__).resolve().parents[2] / "examples" / "fictional-ai-governance-research-to-decision" / "decision_brief.json"
+    source = (
+        Path(__file__).resolve().parents[2]
+        / "examples"
+        / "fictional-ai-governance-research-to-decision"
+        / "decision_brief.json"
+    )
     destination = Path(output)
     if destination.exists():
-        print(f"Refusing to overwrite existing file: {destination}", file=sys.stderr); return 2
+        print(f"Refusing to overwrite existing file: {destination}", file=sys.stderr)
+        return 2
     destination.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source, destination)
     print(f"Copied starter brief to {destination}")
@@ -82,21 +106,32 @@ def _cmd_init(output: str) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="r2d", description="Validate, score, and report a research-to-decision brief.")
-    sub = parser.add_subparsers(dest="cmd", required=True)
-    validate_parser = sub.add_parser("validate"); validate_parser.add_argument("path")
-    score_parser = sub.add_parser("score"); score_parser.add_argument("path"); score_parser.add_argument("--json", action="store_true")
-    report_parser = sub.add_parser("report"); report_parser.add_argument("path"); report_parser.add_argument("--output", "-o", required=True)
-    init_parser = sub.add_parser("init"); init_parser.add_argument("output")
+    parser = argparse.ArgumentParser(prog="r2d", description="Research-to-decision workflow toolkit")
+    sub = parser.add_subparsers(dest="command", required=True)
+    validate_parser = sub.add_parser("validate", help="Validate a decision brief")
+    validate_parser.add_argument("path")
+    score_parser = sub.add_parser("score", help="Score workflow completeness")
+    score_parser.add_argument("path")
+    score_parser.add_argument("--format", choices=("text", "json"), default="text")
+    score_parser.add_argument("--json", action="store_true", help="Backward-compatible alias for --format json")
+    report_parser = sub.add_parser("report", help="Write a Markdown decision packet")
+    report_parser.add_argument("path")
+    report_parser.add_argument("--output", "-o", required=True)
+    init_parser = sub.add_parser("init", help="Copy the fictional starter brief")
+    init_parser.add_argument("output")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.cmd == "validate": return _cmd_validate(args.path)
-    if args.cmd == "score": return _cmd_score(args.path, args.json)
-    if args.cmd == "report": return _cmd_report(args.path, args.output)
-    if args.cmd == "init": return _cmd_init(args.output)
+    if args.command == "validate":
+        return _cmd_validate(args.path)
+    if args.command == "score":
+        return _cmd_score(args.path, "json" if args.json else args.format)
+    if args.command == "report":
+        return _cmd_report(args.path, args.output)
+    if args.command == "init":
+        return _cmd_init(args.output)
     return 2
 
 

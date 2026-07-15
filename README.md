@@ -5,7 +5,7 @@
 A public toolkit for turning open research into evidence-backed decisions, reusable artifacts, and public feedback loops.
 
 > [!IMPORTANT]
-> The 24-point score is an author-designed, uncalibrated heuristic. “Ready for decision meeting” does not mean approved, correct, compliant, or ready to implement. See [`docs/method_status.md`](docs/method_status.md).
+> The fixed 24-point score is an author-designed, uncalibrated structural-workflow heuristic. “Structurally ready for human decision meeting” does not mean approved, correct, compliant, or ready to implement. Human source-check fields are declarations; the CLI does not fetch or authenticate sources. See [`docs/method_status.md`](docs/method_status.md).
 
 ```text
 problem → evidence → judgment → artifact → feedback → iteration
@@ -41,7 +41,7 @@ Use this toolkit to:
 2. Organize what you know into an evidence matrix.
 3. Separate facts from assumptions from judgments.
 4. Decide whether the result should be a memo, a template, a tool, or a publication.
-5. Ship a public artifact and log the feedback signals that come back.
+5. Publish only permission-cleared artifacts and log the feedback signals that come back.
 
 ---
 
@@ -55,7 +55,7 @@ Use this toolkit to:
 | Decide the move | [`templates/decision-memo.md`](templates/decision-memo.md) | A short memo that produces a real decision |
 | Decide the artifact | [`templates/public-artifact-brief.md`](templates/public-artifact-brief.md) | Decide whether the result becomes a repo, an article, a tool, or a workshop |
 | Capture feedback | [`templates/feedback-log.md`](templates/feedback-log.md) | Record public feedback signals without overfitting |
-| Score the readiness | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | A transparent 24-item binary score for decision-meeting readiness |
+| Score the structure | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | Four transparent six-point areas for human decision-meeting workflow completeness |
 | Red-team the commitment | [`modules/decision-review/`](modules/decision-review/) | Alternatives, fragile assumptions, pre-mortem, red-team prompt, and human-review scorecard |
 | AI prompts | [`prompts/research-synthesis-prompt.md`](prompts/research-synthesis-prompt.md), [`prompts/critical-review-prompt.md`](prompts/critical-review-prompt.md), [`prompts/public-artifact-transform-prompt.md`](prompts/public-artifact-transform-prompt.md) | Use AI to draft, stress-test, and transform |
 | Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
@@ -95,7 +95,7 @@ r2d report  examples/fictional-ai-governance-research-to-decision/decision_brief
 Expected output:
 
 ```text
-Decision: Ready for decision meeting
+Decision: Structurally ready for human decision meeting
 Total: 23/24
 Normalized: 95.8%
 Veto: no

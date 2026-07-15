@@ -1,39 +1,22 @@
-# Feedback porting prompt
+# Feedback-porting prompt
 
-Use this prompt to convert real feedback signals from private channels into public artifacts.
+Use only feedback whose processing and reuse are explicitly authorized. Anonymization alone is not permission, and a private comment may remain identifiable from context.
 
-## Prompt
+Do not paste confidential, personal, client, employer, privileged, or restricted information into an external model.
 
 ```text
-You are helping me turn private feedback into a public artifact.
+Using only the permission-cleared feedback entry, produce:
 
-I will paste one feedback entry: a comment, a message, or a short note from a peer.
+1. A minimal paraphrase that excludes identity and context not authorized for reuse.
+2. A one-line methodological implication.
+3. A proposed update to a template, scorecard, prompt, or example.
+4. A list of details withheld and re-identification risks.
+5. A human decision: safe to consider for publication / private-only / authorization unclear.
 
-Produce:
+Do not invent consent, facts, identity, organizational context, or public authorization. If authorization is absent or re-identification risk is unresolved, return only: PRIVATE-ONLY — HUMAN REVIEW REQUIRED.
 
-1. A one-paragraph anonymized version (no names, no organization).
-2. A one-line public "what this means".
-3. A specific suggestion to update a public artifact (template, scorecard, prompt, or example).
-4. A flag if anything in the feedback should NOT be made public.
-
-Rules:
-- Never invent facts.
-- Never name the source.
-- If the feedback reveals a personal detail, mark it private-only and stop.
+Feedback:
+<explicitly authorized text only>
 ```
 
-
-## Why this prompt
-
-Specificity produces specific output. The prompt gives the model a specific identity, a specific brief, and a specific output schema.
-
-## Worked example I/O
-
-*Input*: A 5-page internal memo describing a pilot decision.
-*Expected output*:
-
-> sharpest challenge quoting phrases, strongest prediction, one-paragraph rewrite, one embarrassing question, one good-faith concession.
-
-## Reviewing the output
-
-Ask: did the challenges quote phrases? Did the rewrite change the brief, or just paraphrase it?
+AI output is a transformation draft, not evidence of consent or independent review. A responsible human makes the publication decision.

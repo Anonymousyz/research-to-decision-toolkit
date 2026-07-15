@@ -1,39 +1,39 @@
-
 # Roadmap
 
-This repository is small on purpose. The roadmap reflects a public-feedback loop, not a feature backlog.
+This repository is small on purpose. The roadmap prioritizes evidence, method clarity, and permission-safe reuse.
 
-## v0.3 (current)
+## v0.5 — current hardened alpha
 
-- Decision framing, evidence matrix, decision memo, artifact brief, feedback log
-- Scorecard with veto items
-- Python CLI: validate + score
-- Two fictional examples
-- Sources, manifesto, license
+- [x] `r2d init`, `validate`, `score`, JSON output, and Markdown report
+- [x] Fixed four-area, 24-point structural contract
+- [x] Decision-review area: alternatives, criteria, stakeholders, reversibility, trade-off, pre-mortem
+- [x] Typed source, artifact, feedback, and human source-check declarations
+- [x] Reserved/local source-domain rejection and malformed-field regression tests
+- [x] Unified report renderer and documented exit codes
+- [x] Fictional end-to-end example and inactive CI template under `docs/`
 
-## v0.4 (planned)
+## v0.6 — validation and migration
 
-- Pre-mortem template
-- Assumption ledger
-- Inversion-review prompt
-- Multi-reader review prompt
-- Cross-link to `ai-assisted-decision-review-toolkit`
+- [ ] Add explicit schema-version and migration handling
+- [ ] Compare two briefs across versions
+- [ ] Test at least 20 fictional or permission-cleared briefs with multiple reviewers
+- [ ] Measure item-level inter-rater agreement
+- [ ] Add stale-source and contradictory-source fixtures
+- [ ] Publish an active GitHub Actions workflow only with explicit workflow-scope authorization
 
-## v0.5 (planned)
+## v1.0 — validated public method
 
-- Compare two briefs across versions
-- GitHub Action that runs `r2d score` on PRs
-- Markdown report mode
-
-## v1.0 (planned)
-
-- Stable public API and stable JSON schema
-- Multi-language quickstart (zh-CN, ja, es)
-- 5+ domain examples
+- [ ] Stable CLI and JSON compatibility policy
+- [ ] Published calibration results and known limitations
+- [ ] Independent domain review
+- [ ] Five or more permission-safe domain examples
+- [ ] Multi-language quickstart
 
 ## Out of scope
 
-- LLM auto-filling of decision briefs (deferred)
-- Project management workflows (no)
-- Personal journaling features (no)
-- Authentication (no)
+- automatic fact verification or source authentication;
+- automatic decision approval;
+- project management or personal journaling;
+- uploading confidential material to external models.
+
+Version numbers record software and method maturity, not correctness, certification, or decision authority.
