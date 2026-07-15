@@ -1,134 +1,67 @@
 # Research-to-Decision Manifesto
 
-> **Research becomes useful only when it changes a decision, an artifact, or a public conversation.**
+> **Research earns its keep when someone can use it to make a better decision.**
 
-Most research is wasted in two opposite ways:
+This repository exists because good research often fails at the handoff. Some work never leaves the collection stage. Other work starts with a preferred answer and uses citations as decoration.
 
-1. **Stalled research** — the analyst keeps collecting, but no decision changes.
-2. **Premature research** — the decision is made first, and the research becomes decoration.
+The toolkit imposes a small discipline: name the decision, show the evidence and its weak points, test the alternatives, define the artifact, and record what happened next.
 
-This manifesto is the operating model behind this toolkit.
+## A topic is not a decision
 
----
+“AI governance” is a topic. “Should this team run a bounded procurement-copilot pilot under the stated controls?” is a decision question.
 
-## 1. Decision first
+A usable decision brief names the responsible body, deadline, default outcome, and reason the matter is live now. If those are missing, collecting more material may create a longer report without creating a decision.
 
-Before you collect more evidence, name the decision you are trying to support.
+## Evidence includes reasons to change your mind
 
-A decision has:
+A source list is not an evidence argument. For each material claim, the reader needs to see:
 
-- a clear question;
-- a named decision-maker (or decision-body);
-- a deadline or trigger;
-- a default outcome if nothing happens.
+- what the claim says;
+- whether it is fact, judgment, assumption, or recommendation;
+- where it comes from;
+- its weakest link;
+- what new evidence would change the conclusion.
 
-If you cannot name these, you do not have a decision — you have a topic. Topics deserve exploration. Decisions deserve evidence.
+The last item matters. A memo that cannot say what would change its recommendation is defending a position, not testing one.
 
----
+v0.5 requires human source-check declarations for primary and secondary sources. These fields assign responsibility; they do not authenticate the person or prove that the source supports the claim. The CLI does not fetch URLs.
 
-## 2. Evidence, not enthusiasm
+## A decision needs alternatives and consequences
 
-Enthusiasm is useful for choosing what to study. Evidence is required for choosing what to do.
+The current score gives six of its 24 points to decision review. A packet should contain alternatives, criteria, affected stakeholders, reversibility, a real trade-off, and a plausible pre-mortem failure.
 
-A useful evidence table separates:
+This changed the method for a reason. Earlier versions could describe evidence and publication plans without forcing a hard look at the choice itself. A research workflow should not make the artifact more complete while leaving the decision underexamined.
 
-- **Facts** — what is verified, who verified it, when, how.
-- **Judgments** — what you conclude from facts, and why.
-- **Assumptions** — what you believe but have not verified.
-- **Gaps** — what would change your mind if you knew it.
+## Build an artifact people can actually use
 
-If a memo does not list gaps, it is hiding the risk.
+Some research should become a memo. Other work is more useful as a checklist, comparison table, template, small tool, or worked example. The form depends on the reader and the decision.
 
----
+Public release is optional. Permission is not. Confidential work may remain inside an authorized review setting, and anonymization alone does not create publication rights.
 
-## 3. Artifact second
+An artifact also needs an owner and acceptance criteria. “Publish a report” is an activity. “The procurement lead can use the matrix to approve or reject a pilot scope” is a use case.
 
-If your research only lives in a document, it has at most one reader. If your research becomes an artifact — a template, a tool, a checklist, a scorecard, a prompt, an example — it has many readers.
+## Feedback closes the loop
 
-The question is not *should I write a memo*. The question is *what artifact, for whom, that survives me*.
+After circulation, record who used the artifact, what they misunderstood, what they challenged, and whether any new evidence changed the decision. Stars and page views may be interesting, but they are weak evidence of practical use.
 
-Common artifact forms:
+AI can help draft a matrix, generate challenge questions, or reshape permission-cleared material. It cannot supply missing evidence, consent, independent review, or decision authority.
 
-| Research type | Strong artifact form |
-|---|---|
-| Method or framework | templates + scorecard + example |
-| Decision case | decision memo + reusable heuristic |
-| Comparative review | comparison table + decision rule |
-| Policy or governance analysis | briefing + checklist + checklist-as-tool |
-| FDE delivery experience | playbook + before-after pattern |
+## Five questions before the meeting
 
----
+1. What decision is being made, by whom, and by when?
+2. Which claim is most fragile?
+3. What credible alternative has not received enough attention?
+4. What artifact will the reader use after the meeting?
+5. What evidence or feedback would reopen the decision?
 
-## 4. Feedback third
+If the packet cannot answer these questions, it needs revision rather than a higher score.
 
-An artifact without feedback is a monologue.
+## 中文摘要
 
-A public artifact creates the conditions for:
+这个工具箱解决的不是“如何多写一份研究报告”，而是研究如何进入决策。
 
-- strangers to comment, fork, cite, copy, or argue;
-- you to see which parts resonate and which parts confuse;
-- the next research question to come from real users, not from your imagination.
+一份可用的材料要说明：谁在什么时间作出什么决定；核心判断依赖哪些证据；哪条证据最脆弱；什么新信息会改变结论；有哪些替代方案、利益相关方和可逆边界；研究成果最终由谁使用。
 
-Feedback is not a vanity metric. It is the natural next research question.
+v0.5 的 24 分只检查这些结构是否出现。它不核验来源真实性，不代替独立评审，也不授予决策权限。公开发布同样需要明确授权，匿名化不能替代许可。
 
----
-
-## 5. Iteration fourth
-
-The loop does not stop at feedback. Each feedback cycle:
-
-- rewrites the problem framing;
-- adds or removes evidence;
-- changes the artifact form when needed;
-- upgrades the feedback channel.
-
-The goal is a research flywheel, not a research archive.
-
----
-
-## 6. Translation, not performance
-
-The hardest work is not producing more slides. It is translation:
-
-- from research language to decision language;
-- from private insight to public artifact;
-- from finished work to next question;
-- from one domain to another.
-
-A research-to-decision practitioner is paid for translation, not performance.
-
----
-
-## 7. Practical rule
-
-When you finish a piece of research, answer these five questions:
-
-1. What decision does this support?
-2. What evidence is weakest?
-3. What artifact form maximizes re-use?
-4. Who are the named public readers?
-5. What feedback signal tells me my next move?
-
-If you cannot answer all five, the research is not finished.
-
----
-
-## Chinese summary
-
-这个项目的核心判断是：
-
-> 研究只有变成决策、工具和公开对话，才能真正被使用。
-
-研究常常在两种方式下被浪费：一是不断收集证据但没有决策；二是先做决策，再让研究变成装饰品。
-
-研究到决策的方法，就是 5 步循环：
-
-1. 先把决策问句写清楚；
-2. 再用证据表区分事实、判断、假设和缺口；
-3. 然后选一个能让别人复用的 artifacts（模板、工具、清单、文章）；
-4. 用公开反馈驱动下一轮研究；
-5. 在迭代中不断升级问题、证据、artifact 和反馈渠道。
-
-一句话：
-
-> **研究是判断，工具是载体，公开反馈是下一轮研究的起点。**
+> **研究要形成判断，工具要承载判断，反馈要能改变下一轮判断。**

@@ -2,7 +2,7 @@
 
 > **Open research → evidence → decision → artifact → feedback.**
 
-A public toolkit for turning open research into evidence-backed decisions, reusable artifacts, and public feedback loops.
+A small public toolkit for turning research into a decision packet people can review and reuse.
 
 > [!IMPORTANT]
 > The fixed 24-point score is an author-designed, uncalibrated structural-workflow heuristic. “Structurally ready for human decision meeting” does not mean approved, correct, compliant, or ready to implement. Human source-check fields are declarations; the CLI does not fetch or authenticate sources. See [`docs/method_status.md`](docs/method_status.md).
@@ -11,7 +11,7 @@ A public toolkit for turning open research into evidence-backed decisions, reusa
 problem → evidence → judgment → artifact → feedback → iteration
 ```
 
-This toolkit is for researchers, policy analysts, consulting practitioners, product owners, independent builders, and forward-deployed engineers who want to make their research visibly useful to strangers — not only useful inside their own organization.
+It is for researchers, policy analysts, consultants, product owners, independent builders, and forward-deployed engineers who need research to survive outside the original conversation.
 
 It is **not**:
 
@@ -31,11 +31,11 @@ It **is**:
 
 ## 30-second value proposition
 
-When someone says:
+Use it when the problem sounds like this:
 
 > I did a lot of research but I am not sure what decision it supports, what artifact it should become, or whether anyone else even cares.
 
-Use this toolkit to:
+The workflow helps you:
 
 1. Frame the real decision before collecting more evidence.
 2. Organize what you know into an evidence matrix.
@@ -71,7 +71,7 @@ Use this toolkit to:
 
 ## Quick start
 
-### Option A — manual
+### Option A: manual
 
 1. Open [`templates/problem-framing-canvas.md`](templates/problem-framing-canvas.md) and write down the real decision question.
 2. Move claims into [`templates/evidence-matrix.md`](templates/evidence-matrix.md).
@@ -80,7 +80,7 @@ Use this toolkit to:
 5. Use [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) to decide whether the brief is ready for a decision meeting.
 6. After shipping, log feedback in [`templates/feedback-log.md`](templates/feedback-log.md).
 
-### Option B — CLI
+### Option B: CLI
 
 ```bash
 python -m venv .venv
@@ -135,7 +135,7 @@ If you have 2 hours:
 - not a project management or task tracking tool;
 - not a content calendar.
 
-It is a structured starting point for moving research from private thoughts to reviewable evidence, an accountable decision meeting, a reusable artifact, and feedback. AI-generated challenges are drafting material—not source evidence or independent review.
+It is a structured starting point for moving research from private thoughts to reviewable evidence, an accountable decision meeting, a reusable artifact, and feedback. AI-generated challenges are draft material. They are not source evidence or independent review.
 
 ---
 
