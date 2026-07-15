@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.1 — 2026-07-15
+
+- Restored the complete SPDX-standard MIT license text so GitHub can identify the repository license correctly.
+
 ## v0.4.0 — 2026-07-15
 
 - Corrected the score model so four six-point areas sum transparently to 24.
