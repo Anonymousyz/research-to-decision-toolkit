@@ -36,3 +36,18 @@ A topic is not a decision. Use this canvas to convert the topic into the real de
 Write the decision again in your own words, but more concretely than the first version.
 
 > _v2 of the decision — sharper, narrower, more falsifiable_
+
+## Worked example (fictional)
+
+> Topic: AI-assisted code review can it work?
+> Real decision: Should the team pilot an AI code review assistant for new PRs?
+> Decision body: Platform Engineering Council.
+> Deadline: 2026-09-15.
+> Default outcome: Continue with current human-only review process.
+
+## Re-framing rules
+
+- If the decision body is "we", name the group.
+- If the deadline is "soon", name a date or a trigger.
+- If the default outcome is "we'll figure it out", write "the current state continues".
+- If the question starts with "should we think about", drop the meta-question.

@@ -46,3 +46,17 @@ Pick **one**.
 ## Feedback signal to watch
 
 > _what specific signal tells you the artifact landed_
+
+## Picking the artifact form
+
+The right form is the one that survives the author. Ask:
+1. Who will read this in 6 months when I am not available?
+2. What would they do with it?
+3. Which form allows them to act without contacting me?
+
+## Worked example (excerpt, fictional)
+
+> Research: a small team's evaluation of three retrieval-copilot frameworks.
+> Public readers: Director of Engineering at a regulated enterprise; AI governance lead at a public-sector team; a peer practitioner who has asked the same question privately.
+> Artifact form: a GitHub toolkit with comparison table + decision rule + fictional case.
+> Why: the decision rule survives the author; the table can be re-run by a peer; the case shows the rule in use.

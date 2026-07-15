@@ -36,3 +36,21 @@ Type definitions:
 ## Decision rule
 
 > _state the rule that turns evidence into a decision_
+
+## Why this matrix
+
+Most research writing hides judgments as if they were facts. The matrix forces every claim into one of four categories so a reader can disagree with a specific row.
+
+## Worked example (one row)
+
+> Claim: "Engineers report 30-50% review-time reduction with retrieval copilots."
+> Type: assumption.
+> Source: Vendor case studies.
+> Weakest link: selection bias.
+> Gap that changes mind: peer-reviewed benchmark with <15% reduction.
+
+## Common mistakes
+
+- Mistyping judgments as facts.
+- Listing facts without source.
+- Skipping gaps because they are uncomfortable.

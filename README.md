@@ -54,7 +54,7 @@ Use this toolkit to:
 | Capture feedback | [`templates/feedback-log.md`](templates/feedback-log.md) | Record public feedback signals without overfitting |
 | Score the readiness | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | A 0/1/2 score that decides whether to ship |
 | AI prompts | [`prompts/research-synthesis-prompt.md`](prompts/research-synthesis-prompt.md), [`prompts/critical-review-prompt.md`](prompts/critical-review-prompt.md), [`prompts/public-artifact-transform-prompt.md`](prompts/public-artifact-transform-prompt.md) | Use AI to draft, stress-test, and transform |
-| Example | [`examples/fictional-ai-governance-research-to-decision.md`](examples/fictional-ai-governance-research-to-decision.md) | A fictional end-to-end case |
+| Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
 | CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Validate and score a decision brief locally |
 | Tests | [`tests/test_r2d.py`](tests/test_r2d.py) | Small test surface for the validator |
 | Quickstart | [`docs/quickstart.md`](docs/quickstart.md) | 10 minutes to first decision brief |
@@ -106,7 +106,7 @@ If you only have 5 minutes:
 
 1. Read this README.
 2. Read [`MANIFESTO.md`](MANIFESTO.md).
-3. Skim [`examples/fictional-ai-governance-research-to-decision.md`](examples/fictional-ai-governance-research-to-decision.md).
+3. Skim [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/).
 
 If you have 30 minutes:
 
@@ -129,6 +129,14 @@ If you have 2 hours:
 - not a content calendar.
 
 It is a structured starting point for moving research from private thoughts to public artifacts and feedback.
+
+---
+
+## Out of scope
+
+- not a personal productivity system;
+- not a project management tool;
+- not a substitute for domain expertise.
 
 ---
 

@@ -28,3 +28,19 @@ Do not invent facts. If a claim has no source, mark it as an assumption.
 Raw notes:
 <paste here>
 ```
+
+
+## Why this prompt
+
+Specificity produces specific output. The prompt gives the model a specific identity, a specific brief, and a specific output schema.
+
+## Worked example I/O
+
+*Input*: A 5-page internal memo describing a pilot decision.
+*Expected output*:
+
+> sharpest challenge quoting phrases, strongest prediction, one-paragraph rewrite, one embarrassing question, one good-faith concession.
+
+## Reviewing the output
+
+Ask: did the challenges quote phrases? Did the rewrite change the brief, or just paraphrase it?
