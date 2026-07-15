@@ -23,11 +23,10 @@ r2d score   examples/fictional-ai-governance-research-to-decision/decision_brief
 Expected output:
 
 ```text
-Decision: Ready to ship
-Total: 18/24
-Normalized: 18/24 (75.0%)
+Decision: Ready for decision meeting
+Total: 23/24
+Normalized: 95.8%
 Veto: no
 Top gaps:
-- No external reviewer named
-- Feedback plan is implicit
+- feedback log is not yet filled
 ```

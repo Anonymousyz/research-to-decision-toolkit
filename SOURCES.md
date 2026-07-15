@@ -1,48 +1,35 @@
-# Sources
+# Sources and influence map
 
-This toolkit is informed by public methodology rather than by any single private project. Sources are grouped by type.
+This toolkit combines ideas from decision analysis, pre-mortem review, open/reproducible research, public-policy appraisal, and AI risk management. The 24-point scoring thresholds and repository workflow are **author-designed and uncalibrated**; the sources below inform individual practices but do not validate this implementation.
 
-## Method and reasoning (medium credibility)
+## Primary and authoritative sources
 
-- *Thinking in Systems* — Donella Meadows (system maps, leverage points)
-- *The Art of Doing Science* — various engineering schools (evidence vs enthusiasm)
-- *Working Backwards* — Colin Bryar and Bill Carr (customer-back artifact writing)
-- *Pre-mortem* — Gary Klein (inversion reviews before commitment)
-- *Skin in the Game* — Nassim Taleb (who carries downside risk)
-- *The Effective Executive* — Peter Drucker (results over activity)
-- Munger mental models — public compilations (inversion, second-order effects, incentives)
+| Source | Public URL | Practice used here | Boundary |
+|---|---|---|---|
+| Gary Klein, PreMortem method | https://www.gary-klein.com/premortem | Imagine failure before commitment and work backward to causes | Does not prescribe this repository's score |
+| NIST AI Risk Management Framework | https://www.nist.gov/itl/ai-risk-management-framework | Connect context, measurement, governance, and risk treatment | Voluntary framework; not certification |
+| NIST AI RMF Playbook | https://airc.nist.gov/airmf-resources/playbook/ | Evidence-oriented actions across Govern, Map, Measure, Manage | Suggested actions require local tailoring |
+| OWASP GenAI Security Project | https://genai.owasp.org/ | Security challenge categories for AI-enabled decisions and systems | Threat guidance is not a control-effectiveness opinion |
+| The Turing Way | https://book.the-turing-way.org/ | Reproducible, ethical, collaborative, and communicable research practices | Research handbook, not decision authorization |
+| Center for Open Science | https://www.cos.io/ | Transparency, preregistration, and explicit analysis plans | Scientific workflow patterns need adaptation for policy/business use |
+| UK HM Treasury Green Book | https://www.gov.uk/government/publications/the-green-book-appraisal-and-evaluation-in-central-government | Options, appraisal, uncertainty, and evaluation thinking | UK public-sector guidance; not universally binding |
+| UK HM Treasury Magenta Book | https://www.gov.uk/government/publications/the-magenta-book | Evaluation design and evidence-use discipline | Evaluation guidance; does not validate this scorecard |
 
-## Decision, policy, and consulting practice (medium credibility)
+## Books and secondary influences
 
-- *Thinking, Fast and Slow* — Daniel Kahneman (two systems, cognitive checks)
-- McKinsey and BCG public frameworks (issue tree, hypothesis-driven)
-- *Decision Quality* — SP&O / Shell heritage decision frameworks
-- OECD and World Bank policy brief templates
-- NIST AI RMF Playbook — risk framing usable outside AI
-- GAO and GAO-equivalent public audit checklists
+- Chip Heath and Dan Heath, *Decisive* — widening options, reality-testing assumptions, and preparing to be wrong.
+- Annie Duke, *Thinking in Bets* — separating decision quality from outcome quality.
+- Barbara Minto, *The Pyramid Principle* — decision-oriented structuring and communication.
+- Colin Bryar and Bill Carr, *Working Backwards* — artifact-first clarification of customer value and decisions.
 
-## Open-science and reproducibility (medium credibility)
+Books are listed as influences rather than copied templates. Users should consult the original editions for exact claims.
 
-- *The Turing Way* — open research handbook
-- Center for Open Science (registration, pre-registration, materials)
-- *Ten Simple Rules* series (PLOS Computational Biology)
-- Awesome lists as discovery channels
+## Original contribution
 
-## Software tooling and packaging (high credibility where official)
+The repository's contribution is the integration of:
 
-- Read the Docs, MkDocs, Sphinx documentation patterns
-- semantic-release, release-please, conventional commits
-- OWASP Cheat Sheet Series — security mindset in templates
-- *Docs as Code* — various public guides
+```text
+research framing → structured claims → source tiers → decision brief → artifact plan → feedback loop → red-team review
+```
 
-## Adjacent projects (referenced for inspiration only)
-
-- `awesome-ai-production-readiness` — sister repository for production AI readiness
-- *Tools and sessions used during research* — see individual decision memos
-
-## Notes on credibility
-
-- Official primary sources are preferred for framework claims.
-- Academic sources are preferred for cognitive and decision claims.
-- Media and blog sources are flagged as background only.
-- This toolkit makes no claim that any individual source endorses these specific templates.
+No cited source endorses the 24-point scale, thresholds, or veto list. See [`docs/method_status.md`](docs/method_status.md).

@@ -1,115 +1,110 @@
+"""Transparent 24-point heuristic for decision briefs."""
+from __future__ import annotations
+from collections.abc import Mapping
+from typing import Any
+from .schema import _nonempty, _public_url
 
-"""Scoring logic for decision_brief.json."""
-AREAS = [
-    ("Decision framing", ["decision", "decision_body", "deadline", "default_outcome"]),
-    ("Evidence quality", ["claims_present", "weakest_named", "gaps_listed", "primary_sources"]),
-    ("Artifact plan", ["artifact_form", "named_readers", "channels", "survives_author"]),
-    ("Feedback loop", ["channels_named", "log_filled", "next_move_threshold", "checkin"]),
-]
+AREA_MAX = 6
+MAX_SCORE = 24
+AREAS = ("Decision framing", "Evidence quality", "Artifact plan", "Feedback loop")
 
-def _score(doc):
-    total = 0
-    notes = []
-    d = doc.get("decision", "")
-    if d:
-        total += 1
-        if isinstance(d, str) and d.strip().endswith("?"):
-            total += 1
-        else:
-            notes.append("decision question should end with '?'")
-    else:
-        notes.append("decision question missing")
-    if doc.get("decision_body"):
-        total += 1
-    else:
-        notes.append("decision body missing")
-    if doc.get("deadline"):
-        total += 1
-    else:
-        notes.append("deadline/trigger missing")
-    if doc.get("default_outcome"):
-        total += 1
-    else:
-        notes.append("default outcome missing")
 
+def _add(ok: bool, gap: str, total: int, gaps: list[str]) -> int:
+    if ok:
+        return total + 1
+    gaps.append(gap)
+    return total
+
+
+def _decision_score(doc: Mapping[str, Any]) -> tuple[int, list[str]]:
+    total = 0; gaps: list[str] = []
+    decision = doc.get("decision")
+    total = _add(_nonempty(decision), "decision question missing", total, gaps)
+    total = _add(_nonempty(decision) and decision.strip().endswith("?"), "decision should be written as a question", total, gaps)
+    total = _add(_nonempty(doc.get("decision_body")), "decision body missing", total, gaps)
+    total = _add(_nonempty(doc.get("deadline")), "deadline or trigger missing", total, gaps)
+    total = _add(_nonempty(doc.get("default_outcome")), "default outcome missing", total, gaps)
+    total = _add(_nonempty(doc.get("why_now")), "why-now rationale missing", total, gaps)
+    return total, gaps
+
+
+def _evidence_score(doc: Mapping[str, Any]) -> tuple[int, list[str]]:
+    total = 0; gaps: list[str] = []
+    claims = [c for c in (doc.get("claims") or []) if isinstance(c, Mapping)]
+    total = _add(len(claims) >= 5, f"only {len(claims)} structured claims; need 5+", total, gaps)
+    total = _add(bool(claims) and all(_nonempty(c.get("weakest_link")) for c in claims), "some claims lack a weakest-link note", total, gaps)
+    total = _add(bool(claims) and all(_nonempty(c.get("gap_that_changes_mind")) for c in claims), "some claims lack a gap-that-changes-mind", total, gaps)
+    types = {c.get("type") for c in claims}
+    total = _add({"fact", "judgment", "assumption"}.issubset(types), "evidence does not separate fact, judgment, and assumption", total, gaps)
+    primary_urls = {c.get("source_url") for c in claims if c.get("source_tier") == "primary" and _public_url(c.get("source_url"))}
+    total = _add(len(primary_urls) >= 2, f"only {len(primary_urls)} distinct primary-source URLs; need 2+", total, gaps)
+    total = _add(len(doc.get("uncertainties") or []) >= 2, "fewer than 2 decision-level uncertainties", total, gaps)
+    return total, gaps
+
+
+def _artifact_score(doc: Mapping[str, Any]) -> tuple[int, list[str]]:
+    total = 0; gaps: list[str] = []
+    artifact = doc.get("artifact") if isinstance(doc.get("artifact"), Mapping) else {}
+    total = _add(_nonempty(artifact.get("form")), "artifact form missing", total, gaps)
+    total = _add(len(artifact.get("readers") or []) >= 3, "fewer than 3 named reader groups", total, gaps)
+    total = _add(len(artifact.get("channels") or []) >= 2, "fewer than 2 distribution channels", total, gaps)
+    total = _add(_nonempty(artifact.get("survives_author")), "what survives the author is unclear", total, gaps)
+    total = _add(_nonempty(artifact.get("owner")), "artifact owner missing", total, gaps)
+    total = _add(_nonempty(artifact.get("acceptance_criteria")), "artifact acceptance criteria missing", total, gaps)
+    return total, gaps
+
+
+def _feedback_score(doc: Mapping[str, Any]) -> tuple[int, list[str]]:
+    total = 0; gaps: list[str] = []
+    feedback = doc.get("feedback") if isinstance(doc.get("feedback"), Mapping) else {}
+    total = _add(len(feedback.get("channels") or []) >= 2, "fewer than 2 feedback channels", total, gaps)
+    total = _add(feedback.get("log_filled") is True, "feedback log is not yet filled", total, gaps)
+    total = _add(_nonempty(feedback.get("next_move_threshold")), "next-move threshold missing", total, gaps)
+    total = _add(_nonempty(feedback.get("checkin_date")), "check-in date missing", total, gaps)
+    total = _add(_nonempty(feedback.get("owner")), "feedback owner missing", total, gaps)
+    total = _add(_nonempty(feedback.get("review_question")), "feedback review question missing", total, gaps)
+    return total, gaps
+
+
+def vetoes(doc: Mapping[str, Any]) -> list[str]:
+    result: list[str] = []
+    if not _nonempty(doc.get("decision_body")):
+        result.append("decision body not named")
+    if not _nonempty(doc.get("default_outcome")):
+        result.append("default outcome not stated")
     claims = doc.get("claims") or []
-    if len(claims) >= 5:
-        total += 1
-    else:
-        notes.append(f"only {len(claims)} claims; need 5+")
-    if any(c.get("weakest_link") for c in claims if isinstance(c, dict)):
-        total += 1
-    else:
-        notes.append("no claim has a weakest-link note")
-    if any(c.get("gap_that_changes_mind") for c in claims if isinstance(c, dict)):
-        total += 1
-    else:
-        notes.append("no claim has a gap-that-changes-mind note")
-    sources = sum(1 for c in claims if isinstance(c, dict) and c.get("source") and "internal" not in str(c.get("source", "")).lower())
-    if sources >= 2:
-        total += 1
-    else:
-        notes.append(f"only {sources} primary sources cited; need 2+")
+    if not any(_nonempty(c.get("gap_that_changes_mind")) for c in claims if isinstance(c, Mapping)):
+        result.append("no gap-that-changes-mind declared")
+    return result
 
-    art = doc.get("artifact") or {}
-    if art.get("form"):
-        total += 1
-    readers = art.get("readers") or []
-    if len(readers) >= 3:
-        total += 1
-    else:
-        notes.append(f"only {len(readers)} named readers; need 3+")
-    channels = art.get("channels") or []
-    if len(channels) >= 2:
-        total += 1
-    else:
-        notes.append(f"only {len(channels)} channels; need 2+")
-    if art.get("survives_author"):
-        total += 1
-    else:
-        notes.append("'what survives the author' is empty")
+# Backward-compatible spelling used in v0.3.
+vetos = vetoes
 
-    fb = doc.get("feedback") or {}
-    fb_channels = fb.get("channels") or []
-    if len(fb_channels) >= 2:
-        total += 1
-    else:
-        notes.append(f"only {len(fb_channels)} feedback channels; need 2+")
-    if fb.get("log_filled"):
-        total += 1
-    else:
-        notes.append("feedback log is not filled")
-    if fb.get("next_move_threshold"):
-        total += 1
-    else:
-        notes.append("next-move threshold is empty")
-    if fb.get("checkin_date"):
-        total += 1
-    else:
-        notes.append("30-day check-in date is empty")
-    return total, notes
 
-def vetos(doc):
-    veto = []
-    if not (doc.get("decision_body") or "").strip():
-        veto.append("decision body not named")
-    if not (doc.get("default_outcome") or "").strip():
-        veto.append("default outcome not stated")
-    claims = doc.get("claims") or []
-    if not any((c.get("gap_that_changes_mind") or "") for c in claims if isinstance(c, dict)):
-        veto.append("no gap declared anywhere")
-    return veto
-
-def make_report(doc):
-    total, notes = _score(doc)
-    v = vetos(doc)
-    decision = "Ready to ship" if (total >= 16 and not v) else "Not ready"
+def make_report(doc: Mapping[str, Any]) -> dict[str, Any]:
+    area_results = []
+    all_gaps: list[str] = []
+    for name, scorer in zip(AREAS, (_decision_score, _evidence_score, _artifact_score, _feedback_score)):
+        score, gaps = scorer(doc)
+        area_results.append({"name": name, "score": score, "max": AREA_MAX, "gaps": gaps})
+        all_gaps.extend(gaps)
+    total = sum(area["score"] for area in area_results)
+    veto = vetoes(doc)
+    if veto:
+        verdict = "Do not proceed: veto present"
+    elif total >= 18:
+        verdict = "Ready for decision meeting"
+    elif total >= 14:
+        verdict = "Revise before decision meeting"
+    else:
+        verdict = "Not decision-ready"
     return {
         "total": total,
-        "max": 24,
-        "normalized_pct": round(total / 24 * 100, 1),
-        "veto": v,
-        "decision": decision,
-        "top_gaps": notes[:3],
-        "areas": [{"name": n, "weight": 6} for n, _ in AREAS],
+        "max": MAX_SCORE,
+        "normalized_pct": round(total / MAX_SCORE * 100, 1),
+        "veto": veto,
+        "decision": verdict,
+        "top_gaps": all_gaps[:5],
+        "areas": area_results,
+        "method_status": "author-designed, uncalibrated decision-support heuristic",
     }

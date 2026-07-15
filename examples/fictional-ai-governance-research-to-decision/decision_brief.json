@@ -1,60 +1,81 @@
 {
-  "decision": "Should the team pilot the AI procurement-copilot in the supplier-onboarding workflow?",
-  "decision_body": "Risk and Compliance Council (RCC), chaired by the Head of Procurement Operations.",
-  "deadline": "2026-09-30 (next RCC quarterly review).",
-  "default_outcome": "No copilot. The supplier-onboarding process continues unchanged; existing manual reviews remain the bottleneck.",
+  "decision": "Should the team pilot the fictional AI procurement copilot in supplier onboarding?",
+  "decision_body": "Risk and Compliance Council, chaired by the Head of Procurement Operations.",
+  "deadline": "2026-09-30 quarterly review.",
+  "default_outcome": "Do not pilot; retain the existing manual review workflow.",
+  "why_now": "Document rework is delaying onboarding, while the next council review provides a bounded decision point.",
   "claims": [
     {
-      "claim": "Past supplier-onboarding cycles reported 18% rework on document completeness.",
+      "claim": "The synthetic baseline records 18% rework on document completeness.",
       "type": "fact",
-      "source": "internal: 2025 supplier-onboarding operations review (synthetic)",
-      "weakest_link": "Rework rate depends on which document class is reviewed; the 18% mixes clean and unclear cases.",
-      "gap_that_changes_mind": "If rework rate is below 8%, manual review cost is likely lower than the cost of any copilot experiment."
+      "source": "Synthetic 2025 operations review",
+      "source_tier": "synthetic",
+      "weakest_link": "The mixed document classes may hide variation.",
+      "gap_that_changes_mind": "A clean re-count below 8% would weaken the pilot case."
     },
     {
-      "claim": "An LLM with retrieval over the supplier handbook can answer 70% of completeness questions correctly.",
+      "claim": "A retrieval prototype answered 70% of a synthetic 50-case set correctly.",
       "type": "judgment",
-      "source": "internal: synthetic 50-case pilot (synthetic)",
-      "weakest_link": "The 50-case set was constructed by the proposer and may over-represent easy cases.",
-      "gap_that_changes_mind": "If a new, unseen 50-case set shows <50% accuracy, the copilot does not yet justify a pilot."
+      "source": "Synthetic proposer-built evaluation",
+      "source_tier": "synthetic",
+      "weakest_link": "The proposer selected the cases.",
+      "gap_that_changes_mind": "Accuracy below 50% on an unseen set would stop the pilot."
     },
     {
-      "claim": "Risk and Compliance want a human-in-the-loop check before any decision is sent to a supplier.",
+      "claim": "Human approval is required before any supplier-facing action.",
       "type": "fact",
-      "source": "internal: 2026 RCC charter (synthetic)",
-      "weakest_link": "Different RCC members interpret 'human-in-the-loop' differently — checkpoint vs full review.",
-      "gap_that_changes_mind": "If the operational meaning is not agreed, the pilot cannot specify acceptance criteria."
+      "source": "Synthetic council charter",
+      "source_tier": "internal",
+      "weakest_link": "Approval and full review are not yet distinguished.",
+      "gap_that_changes_mind": "An unresolved review definition would make acceptance criteria impossible."
     },
     {
-      "claim": "Mid-market procurement teams using retrieval copilots reduce review time by 30–50% in similar pilots.",
+      "claim": "Risk review should cover context, impacts, measurement, and treatment rather than model accuracy alone.",
+      "type": "judgment",
+      "source": "NIST AI Risk Management Framework",
+      "source_tier": "primary",
+      "source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "weakest_link": "The framework does not prescribe this local workflow.",
+      "gap_that_changes_mind": "If the council cannot map the pilot to named controls, postpone it."
+    },
+    {
+      "claim": "The pilot must test sensitive-information disclosure and excessive agency risks.",
       "type": "assumption",
-      "source": "public vendor case studies, sample of 3 anonymized writeups (synthetic)",
-      "weakest_link": "Industry sources are vendor-promoted and selection-biased.",
-      "gap_that_changes_mind": "If a peer-reviewed benchmark shows <15% review-time reduction, the projected value is overstated."
-    },
-    {
-      "claim": "Audit logs require capturing: input document, retrieval context, model output, human edit, final supplier email.",
-      "type": "fact",
-      "source": "public: NIST AI RMF Manage function + OWASP LLM Top 10 logging guidance",
-      "weakest_link": "Storage cost and reviewer ergonomics are not yet scoped.",
-      "gap_that_changes_mind": "If logging costs exceed projected copilot savings, the business case collapses."
+      "source": "OWASP GenAI Security Project",
+      "source_tier": "primary",
+      "source_url": "https://genai.owasp.org/",
+      "weakest_link": "The taxonomy identifies risks but does not prove control effectiveness.",
+      "gap_that_changes_mind": "A critical disclosure or unauthorized action in testing would block the pilot."
     }
   ],
+  "uncertainties": [
+    "The unseen-case accuracy distribution is unknown.",
+    "The cost of complete audit logging is not yet measured."
+  ],
   "artifact": {
-    "form": "GitHub toolkit + internal pilot playbook",
+    "form": "Public fictional case plus internal pilot memo",
     "readers": [
-      "Risk and Compliance lead at a mid-market procurement team",
-      "Procurement operations manager preparing a pilot",
-      "AI governance analyst at a regulated enterprise",
-      "Researcher-builder publishing similar playbooks"
+      "Procurement operations lead",
+      "Risk and compliance reviewer",
+      "AI product owner"
     ],
-    "channels": ["GitHub Topics + README", "Internal risk-review mailing list", "Quarterly RCC briefing"],
-    "survives_author": "A GitHub toolkit can be cloned, adapted, and re-used by a different risk team without contacting the original author."
+    "channels": [
+      "GitHub repository",
+      "Council review pack"
+    ],
+    "survives_author": "The JSON brief, evidence matrix, and report can be rerun by a new reviewer.",
+    "owner": "AI product owner",
+    "acceptance_criteria": "A reviewer can trace every scored claim to its source tier and decision consequence."
   },
   "feedback": {
-    "channels": ["GitHub issues on the public repo", "Internal Q&A in the procurement Slack channel"],
-    "log_filled": true,
-    "next_move_threshold": "If after 8 weeks we see <10% review-time reduction on pilot tasks OR 1+ critical safety finding, stop and re-scope.",
-    "checkin_date": "2026-11-30"
+    "channels": [
+      "GitHub issues",
+      "Council review comments"
+    ],
+    "log_filled": false,
+    "next_move_threshold": "Stop if one critical control failure occurs or measured rework reduction is below 10%.",
+    "checkin_date": "2026-11-30",
+    "owner": "Procurement operations analyst",
+    "review_question": "Which missing evidence would most likely reverse the pilot decision?"
   }
 }

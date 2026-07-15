@@ -4,10 +4,10 @@ A claim is not evidence until it is typed. Sort claims before you use them.
 
 ## Claim register
 
-| # | Claim | Type | Source | Weakest link | Gap that changes mind |
-|---|---|---|---|---|---|
-| 1 | _claim text_ | fact / judgment / assumption | _link or file_ | _what would weaken this_ | _what would flip the conclusion_ |
-| 2 | _..._ | | | | |
+| # | Claim | Type | Source tier | Source / URL | Weakest link | Gap that changes mind |
+|---|---|---|---|---|---|---|
+| 1 | _claim text_ | fact / judgment / assumption | primary / secondary / internal / synthetic | _title + direct URL or authorized file reference_ | _what would weaken this_ | _what would flip the conclusion_ |
+| 2 | _..._ | | | | | |
 
 Type definitions:
 
@@ -15,6 +15,8 @@ Type definitions:
 - **Judgment** — your conclusion from facts, argued.
 - **Assumption** — what you believe but have not verified.
 - **Gap** — what would change your mind if you knew it.
+
+Source tiers describe provenance, not automatic quality. A primary source can still be incomplete or inapplicable; an internal source may be decisive but must not be published without authorization.
 
 ## Weakest claim (single most fragile)
 
@@ -43,11 +45,12 @@ Most research writing hides judgments as if they were facts. The matrix forces e
 
 ## Worked example (one row)
 
-> Claim: "Engineers report 30-50% review-time reduction with retrieval copilots."
-> Type: assumption.
-> Source: Vendor case studies.
-> Weakest link: selection bias.
-> Gap that changes mind: peer-reviewed benchmark with <15% reduction.
+> Claim: "The proposed pilot should map workflow risks before launch."
+> Type: judgment.
+> Source tier: primary.
+> Source: NIST AI Risk Management Framework — https://www.nist.gov/itl/ai-risk-management-framework
+> Weakest link: the framework does not prescribe this local workflow.
+> Gap that changes mind: inability to identify a concrete risk treatment for the pilot.
 
 ## Common mistakes
 

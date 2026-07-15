@@ -1,9 +1,10 @@
-# GitHub Actions validate template.
+# GitHub Actions validation template.
 #
-# To enable, copy this file to `.github/workflows/validate.yml` using a token with `workflow` scope.
-# Until then, run `python tests/run_tests.py` locally before pushing.
+# To enable, copy this file to `.github/workflows/validate.yml` using a token
+# with GitHub's `workflow` scope. Until then, run the commands below locally.
 
 name: validate
+
 on:
   push:
     branches: [main]
@@ -13,10 +14,16 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.11', '3.12']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
       - run: python -m pip install -e .
-      - run: python tests/run_tests.py
+      - run: python -m unittest discover -s tests -v
+      - run: r2d validate examples/fictional-ai-governance-research-to-decision/decision_brief.json
+      - run: r2d score examples/fictional-ai-governance-research-to-decision/decision_brief.json --json > /tmp/score.json
+      - run: r2d report examples/fictional-ai-governance-research-to-decision/decision_brief.json --output /tmp/report.md

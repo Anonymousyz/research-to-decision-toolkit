@@ -4,6 +4,9 @@
 
 A public toolkit for turning open research into evidence-backed decisions, reusable artifacts, and public feedback loops.
 
+> [!IMPORTANT]
+> The 24-point score is an author-designed, uncalibrated heuristic. “Ready for decision meeting” does not mean approved, correct, compliant, or ready to implement. See [`docs/method_status.md`](docs/method_status.md).
+
 ```text
 problem → evidence → judgment → artifact → feedback → iteration
 ```
@@ -52,11 +55,14 @@ Use this toolkit to:
 | Decide the move | [`templates/decision-memo.md`](templates/decision-memo.md) | A short memo that produces a real decision |
 | Decide the artifact | [`templates/public-artifact-brief.md`](templates/public-artifact-brief.md) | Decide whether the result becomes a repo, an article, a tool, or a workshop |
 | Capture feedback | [`templates/feedback-log.md`](templates/feedback-log.md) | Record public feedback signals without overfitting |
-| Score the readiness | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | A 0/1/2 score that decides whether to ship |
+| Score the readiness | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | A transparent 24-item binary score for decision-meeting readiness |
+| Red-team the commitment | [`modules/decision-review/`](modules/decision-review/) | Alternatives, fragile assumptions, pre-mortem, red-team prompt, and human-review scorecard |
 | AI prompts | [`prompts/research-synthesis-prompt.md`](prompts/research-synthesis-prompt.md), [`prompts/critical-review-prompt.md`](prompts/critical-review-prompt.md), [`prompts/public-artifact-transform-prompt.md`](prompts/public-artifact-transform-prompt.md) | Use AI to draft, stress-test, and transform |
 | Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
-| CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Validate and score a decision brief locally |
-| Tests | [`tests/test_r2d.py`](tests/test_r2d.py) | Small test surface for the validator |
+| CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Initialize, validate, score, and report a decision brief locally |
+| Tests | [`tests/test_r2d.py`](tests/test_r2d.py) | Schema, score invariants, veto, reporting, and CLI behavior |
+| CI template | [`docs/github_actions_validate.template.yml`](docs/github_actions_validate.template.yml) | Copy-ready validation workflow; intentionally inactive until a token with `workflow` scope is available |
+| Method boundary | [`docs/method_status.md`](docs/method_status.md) | Explain what the score can and cannot establish |
 | Quickstart | [`docs/quickstart.md`](docs/quickstart.md) | 10 minutes to first decision brief |
 | Sources | [`SOURCES.md`](SOURCES.md) | Where the method comes from |
 | Roadmap | [`docs/roadmap.md`](docs/roadmap.md) | What this repo will become next |
@@ -71,7 +77,7 @@ Use this toolkit to:
 2. Move claims into [`templates/evidence-matrix.md`](templates/evidence-matrix.md).
 3. Use [`templates/decision-memo.md`](templates/decision-memo.md) to produce a memo.
 4. Use [`templates/public-artifact-brief.md`](templates/public-artifact-brief.md) to choose the artifact form.
-5. Use [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) to decide whether to ship.
+5. Use [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) to decide whether the brief is ready for a decision meeting.
 6. After shipping, log feedback in [`templates/feedback-log.md`](templates/feedback-log.md).
 
 ### Option B — CLI
@@ -80,20 +86,21 @@ Use this toolkit to:
 python -m venv .venv
 . .venv/bin/activate  # Windows: .venv\Scripts\activate
 python -m pip install -e .
+r2d init     my_decision_brief.json
 r2d validate examples/fictional-ai-governance-research-to-decision/decision_brief.json
 r2d score   examples/fictional-ai-governance-research-to-decision/decision_brief.json
+r2d report  examples/fictional-ai-governance-research-to-decision/decision_brief.json --output decision_report.md
 ```
 
 Expected output:
 
 ```text
-Decision: Ready to ship
-Total: 18/24
-Normalized: 18/24 (75.0%)
+Decision: Ready for decision meeting
+Total: 23/24
+Normalized: 95.8%
 Veto: no
 Top gaps:
-- No external reviewer named
-- Feedback plan is implicit
+- feedback log is not yet filled
 ```
 
 See [`docs/cli.md`](docs/cli.md).
@@ -121,22 +128,14 @@ If you have 2 hours:
 
 ---
 
-## What this toolkit is not
+## Out of scope and method boundary
 
 - not a substitute for legal, security, compliance, or medical advice;
 - not a guarantee of correctness for any specific decision;
 - not a project management or task tracking tool;
 - not a content calendar.
 
-It is a structured starting point for moving research from private thoughts to public artifacts and feedback.
-
----
-
-## Out of scope
-
-- not a personal productivity system;
-- not a project management tool;
-- not a substitute for domain expertise.
+It is a structured starting point for moving research from private thoughts to reviewable evidence, an accountable decision meeting, a reusable artifact, and feedback. AI-generated challenges are drafting material—not source evidence or independent review.
 
 ---
 
