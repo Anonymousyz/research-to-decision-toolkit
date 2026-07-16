@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Research-to-Decision Toolkit overview</title>
+  <desc id="desc">A five-stage path from research to evidence, judgment, human decision and feedback.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131d"/><stop offset="1" stop-color="#162033"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#34d399"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1e293b" stroke-width="1" opacity=".5"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".28"/></filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="58" y="44" width="1084" height="542" rx="26" fill="#0f172a" stroke="#24324a"/>
+  <text x="92" y="91" fill="#6ee7b7" font-family="Segoe UI,Arial" font-size="15" font-weight="700" letter-spacing="2">EVIDENCE-BACKED DECISION PACKETS · v0.6.0</text>
+  <text x="92" y="145" fill="#f8fafc" font-family="Segoe UI,Arial" font-size="42" font-weight="750">Research should end in a decision, not a folder</text>
+  <text x="92" y="181" fill="#94a3b8" font-family="Segoe UI,Arial" font-size="20">Turn claims, sources and uncertainty into an artifact accountable humans can challenge.</text>
+  <path d="M270 312H313M478 312H521M686 312H729M894 312H937" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)" font-family="Segoe UI,Arial">
+    <rect x="86" y="235" width="184" height="158" rx="17" fill="#0c2b27" stroke="#34d399" stroke-width="2"/><text x="108" y="277" fill="#6ee7b7" font-size="14" font-weight="700">01 · FRAME</text><text x="108" y="318" fill="#f8fafc" font-size="24" font-weight="700">Research</text><text x="108" y="350" fill="#94a3b8" font-size="14">decision · owner · date</text>
+    <rect x="294" y="235" width="184" height="158" rx="17" fill="#0b2635" stroke="#22d3ee" stroke-width="2"/><text x="316" y="277" fill="#67e8f9" font-size="14" font-weight="700">02 · TEST</text><text x="316" y="318" fill="#f8fafc" font-size="24" font-weight="700">Evidence</text><text x="316" y="350" fill="#94a3b8" font-size="14">facts · sources · gaps</text>
+    <rect x="502" y="235" width="184" height="158" rx="17" fill="#10273a" stroke="#38bdf8" stroke-width="2"/><text x="524" y="277" fill="#bae6fd" font-size="14" font-weight="700">03 · REASON</text><text x="524" y="318" fill="#f8fafc" font-size="24" font-weight="700">Judgment</text><text x="524" y="350" fill="#94a3b8" font-size="14">claim → inference → action</text>
+    <rect x="710" y="235" width="184" height="158" rx="17" fill="#211a3b" stroke="#a78bfa" stroke-width="2"/><text x="732" y="277" fill="#ddd6fe" font-size="14" font-weight="700">04 · CHOOSE</text><text x="732" y="318" fill="#f8fafc" font-size="24" font-weight="700">Decision</text><text x="732" y="350" fill="#94a3b8" font-size="14">alternatives · trade-offs</text>
+    <rect x="918" y="235" width="196" height="158" rx="17" fill="#2a1e26" stroke="#fb7185" stroke-width="2"/><text x="940" y="277" fill="#fecdd3" font-size="14" font-weight="700">05 · LEARN</text><text x="940" y="318" fill="#f8fafc" font-size="24" font-weight="700">Feedback</text><text x="940" y="350" fill="#94a3b8" font-size="14">artifact · owner · signal</text>
+  </g>
+  <rect x="86" y="437" width="1028" height="92" rx="15" fill="#111c2e" stroke="#26364e"/>
+  <text x="116" y="474" fill="#cbd5e1" font-family="Segoe UI,Arial" font-size="16" font-weight="700">One packet, four inspectable layers</text>
+  <text x="116" y="505" fill="#94a3b8" font-family="Segoe UI,Arial" font-size="15">Decision framing · evidence matrix · decision review · reusable artifact and feedback log</text>
+  <rect x="86" y="558" width="1028" height="4" rx="2" fill="url(#line)"/>
+</svg>

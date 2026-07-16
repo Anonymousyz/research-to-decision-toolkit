@@ -4,6 +4,21 @@
 ![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![GitHub release](https://img.shields.io/github/v/release/Anonymousyz/research-to-decision-toolkit)
 
+<p align="center">
+  <img src="assets/r2d-overview.svg" alt="Research-to-Decision Toolkit: research, evidence, judgment, decision and feedback" width="100%">
+</p>
+
+## Try it in 60 seconds
+
+```bash
+python -m pip install "https://github.com/Anonymousyz/research-to-decision-toolkit/releases/download/v0.6.0/research_to_decision_toolkit-0.6.0-py3-none-any.whl"
+r2d init brief.json
+r2d validate brief.json
+r2d report brief.json --output decision_report.md
+```
+
+The starter brief is a valid fictional example. Replace it with permission-cleared sources, alternatives, decision ownership and feedback criteria, then rerun validation. See the [fictional end-to-end case](examples/fictional-ai-governance-research-to-decision/README.md) or submit a [field-test report](https://github.com/Anonymousyz/research-to-decision-toolkit/issues/new?template=field-test.yml).
+
 > **Open research → evidence → human decision → reusable artifact → feedback.**
 
 A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment evidence into a decision packet that accountable people can review, challenge, and reuse.
@@ -32,7 +47,7 @@ The toolkit is deliberately narrower than a project-management system and broade
 
 ---
 
-## 30-second value proposition
+## When research needs to become a decision
 
 Use it when the problem sounds like this:
 

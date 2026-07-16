@@ -1,0 +1,55 @@
+name: Field-test report
+description: Share a reproducible decision-packet or CLI gap using public or synthetic material only.
+title: "[field test] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include confidential, personal, client, employer, security-sensitive, or regulated data.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: v0.6.0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: What did you test?
+      options:
+        - Decision brief schema or CLI
+        - Evidence matrix
+        - Decision review
+        - Argument-quality record
+        - Judgment-writing record
+        - Fictional case or documentation
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Public or synthetic scenario
+      description: State the decision, intended owner and evidence boundary.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result and reproduction steps
+      render: shell
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Publication boundary
+      options:
+        - label: I confirm that this report uses only public, fictional, synthetic, or explicitly authorized material.
+          required: true
