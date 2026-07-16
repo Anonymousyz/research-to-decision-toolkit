@@ -7,7 +7,7 @@ authors:
 repository-code: "https://github.com/Anonymousyz/research-to-decision-toolkit"
 url: "https://github.com/Anonymousyz/research-to-decision-toolkit"
 license: MIT
-version: 0.5.2
+version: 0.6.0
 date-released: 2026-07-16
 abstract: >-
   A local-first toolkit for structuring evidence, alternatives, decision

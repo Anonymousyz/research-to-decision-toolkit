@@ -1,6 +1,7 @@
 """Tests for the r2d package."""
 from copy import deepcopy
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -24,6 +25,7 @@ class R2DTests(unittest.TestCase):
         cls.doc = json.loads(EXAMPLE.read_text(encoding="utf-8"))
 
     def test_example_validates(self):
+        self.assertEqual(self.doc.get("schema_version"), "0.6")
         ok, errors, veto = validate(self.doc)
         self.assertTrue(ok, f"errors={errors} veto={veto}")
 
@@ -78,6 +80,34 @@ class R2DTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertTrue(any("reserved or local domain" in item for item in errors))
 
+    def test_rejects_reserved_subdomains_trailing_dots_private_ips_and_legacy_hosts(self):
+        for url in (
+            "https://a.example.com/evidence",
+            "https://example.org./evidence",
+            "http://10.0.0.1/evidence",
+            "http://192.168.1.1/evidence",
+            "https://:443/missing-host",
+            "http://2130706433/integer-loopback",
+            "http://0x7f000001/hex-loopback",
+            "http://127.1/short-loopback",
+        ):
+            with self.subTest(url=url):
+                doc = deepcopy(self.doc)
+                primary = next(claim for claim in doc["claims"] if claim["source_tier"] == "primary")
+                primary["source_url"] = url
+                ok, errors, _ = validate(doc)
+                self.assertFalse(ok)
+                self.assertTrue(any("source_url" in item for item in errors))
+
+    def test_fragments_do_not_create_distinct_primary_sources(self):
+        doc = deepcopy(self.doc)
+        primary = [claim for claim in doc["claims"] if claim["source_tier"] == "primary"]
+        self.assertGreaterEqual(len(primary), 2)
+        primary[1]["source_url"] = primary[0]["source_url"] + "#different-fragment"
+        report = make_report(doc)
+        evidence = next(area for area in report["areas"] if area["name"] == "Evidence quality")
+        self.assertIn("only 1 distinct human-checked primary-source URLs; need 2+", evidence["gaps"])
+
     def test_requires_human_source_check_metadata_for_primary_sources(self):
         doc = deepcopy(self.doc)
         primary = next(claim for claim in doc["claims"] if claim["source_tier"] == "primary")
@@ -92,6 +122,33 @@ class R2DTests(unittest.TestCase):
         ok, errors, _ = validate(doc)
         self.assertFalse(ok)
         self.assertTrue(any("decision_review" in item for item in errors))
+
+    def test_v06_requires_argument_quality_and_writing_review(self):
+        doc = deepcopy(self.doc)
+        doc["schema_version"] = "0.6"
+        doc.pop("argument_quality", None)
+        doc.pop("writing_review", None)
+        ok, errors, _ = validate(doc)
+        self.assertFalse(ok)
+        self.assertTrue(any("argument_quality" in item for item in errors))
+        self.assertTrue(any("writing_review" in item for item in errors))
+
+    def test_rejects_unknown_or_non_string_schema_version(self):
+        for version in ("9.9", 6, True, None):
+            with self.subTest(version=version):
+                doc = deepcopy(self.doc)
+                doc["schema_version"] = version
+                ok, errors, _ = validate(doc)
+                self.assertFalse(ok)
+                self.assertTrue(any("schema_version" in item for item in errors))
+
+    def test_v06_rejects_incomplete_quality_review(self):
+        doc = deepcopy(self.doc)
+        doc.update({"schema_version": "0.6", "argument_quality": {}, "writing_review": {}})
+        ok, errors, _ = validate(doc)
+        self.assertFalse(ok)
+        self.assertTrue(any("argument_quality.chain" in item for item in errors))
+        self.assertTrue(any("writing_review.passes" in item for item in errors))
 
     def test_cli_scores_structural_veto_and_returns_one(self):
         doc = deepcopy(self.doc)
@@ -113,6 +170,13 @@ class R2DTests(unittest.TestCase):
         self.assertIn("uncalibrated decision-support heuristic", output)
         self.assertIn("| Evidence quality |", output)
 
+    def test_markdown_report_includes_v06_quality_review(self):
+        output = render_markdown(self.doc, make_report(self.doc))
+        self.assertIn("## Argument quality gates", output)
+        self.assertIn("## Five-pass writing review", output)
+        self.assertIn("human-with-ai-assistance", output)
+        self.assertIn("counterevidence", output.lower())
+
     def test_cli_validate_score_report_and_init(self):
         self.assertEqual(main(["validate", str(EXAMPLE)]), 0)
         self.assertEqual(main(["score", str(EXAMPLE), "--json"]), 0)
@@ -122,8 +186,53 @@ class R2DTests(unittest.TestCase):
             self.assertEqual(main(["report", str(EXAMPLE), "-o", str(report)]), 0)
             self.assertIn("# Decision packet", report.read_text(encoding="utf-8"))
             self.assertEqual(main(["init", str(starter)]), 0)
-            self.assertTrue(starter.exists())
+            self.assertEqual(json.loads(starter.read_text(encoding="utf-8")), self.doc)
             self.assertEqual(main(["init", str(starter)]), 2)
+
+    def test_report_refuses_to_overwrite_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "brief.json"
+            source.write_text(EXAMPLE.read_text(encoding="utf-8"), encoding="utf-8")
+            original = source.read_bytes()
+            with patch("sys.stderr"):
+                self.assertEqual(main(["report", str(source), "--output", str(source)]), 2)
+            self.assertEqual(source.read_bytes(), original)
+
+    def test_report_refuses_hardlink_alias_of_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "brief.json"
+            alias = Path(tmp) / "hardlink-report.md"
+            source.write_text(EXAMPLE.read_text(encoding="utf-8"), encoding="utf-8")
+            os.link(source, alias)
+            original = source.read_bytes()
+            with patch("sys.stderr"):
+                self.assertEqual(main(["report", str(source), "--output", str(alias)]), 2)
+            self.assertEqual(source.read_bytes(), original)
+
+    def test_report_refuses_symlink_alias_of_source_when_supported(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "brief.json"
+            alias = Path(tmp) / "symlink-report.md"
+            source.write_text(EXAMPLE.read_text(encoding="utf-8"), encoding="utf-8")
+            try:
+                os.symlink(source, alias)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"symbolic links are not available in this environment: {exc}")
+            original = source.read_bytes()
+            with patch("sys.stderr"):
+                self.assertEqual(main(["report", str(source), "--output", str(alias)]), 2)
+            self.assertEqual(source.read_bytes(), original)
+
+    def test_report_returns_one_for_valid_but_not_ready_brief(self):
+        doc = deepcopy(self.doc)
+        for claim in doc["claims"]:
+            claim["gap_that_changes_mind"] = ""
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "brief.json"
+            output = Path(tmp) / "report.md"
+            source.write_text(json.dumps(doc), encoding="utf-8")
+            self.assertEqual(main(["report", str(source), "--output", str(output)]), 1)
+            self.assertTrue(output.exists())
 
     def test_cli_returns_input_error_for_bad_json(self):
         with tempfile.TemporaryDirectory() as tmp:

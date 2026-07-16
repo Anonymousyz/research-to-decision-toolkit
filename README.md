@@ -60,6 +60,8 @@ The workflow helps you:
 | Capture feedback | [`templates/feedback-log.md`](templates/feedback-log.md) | Record public feedback signals without overfitting |
 | Score the structure | [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) | Four transparent six-point areas for human decision-meeting workflow completeness |
 | Red-team the commitment | [`modules/decision-review/`](modules/decision-review/) | Alternatives, fragile assumptions, pre-mortem, red-team prompt, and human-review scorecard |
+| Review the reasoning chain | [`modules/argument-quality/`](modules/argument-quality/) | Concept, evidence, and action gates plus claim→evidence→inference→action chains |
+| Review the written artifact | [`modules/judgment-writing/`](modules/judgment-writing/) | Path A/B and an ordered five-pass judgment-writing record |
 | AI prompts | [`prompts/research-synthesis-prompt.md`](prompts/research-synthesis-prompt.md), [`prompts/critical-review-prompt.md`](prompts/critical-review-prompt.md), [`prompts/public-artifact-transform-prompt.md`](prompts/public-artifact-transform-prompt.md) | Use AI to draft, stress-test, and transform |
 | Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
 | CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Initialize, validate, score, and report a decision brief locally |
@@ -81,8 +83,10 @@ The workflow helps you:
 2. Move claims into [`templates/evidence-matrix.md`](templates/evidence-matrix.md).
 3. Use [`templates/decision-memo.md`](templates/decision-memo.md) to produce a memo.
 4. Use [`templates/public-artifact-brief.md`](templates/public-artifact-brief.md) to choose the artifact form.
-5. Use [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) to decide whether the brief is ready for a decision meeting.
-6. After shipping, log feedback in [`templates/feedback-log.md`](templates/feedback-log.md).
+5. Use the [`argument-quality`](modules/argument-quality/) gate to expose the inference, boundary, and counterevidence behind the proposed action.
+6. Run the [`judgment-writing`](modules/judgment-writing/) five-pass review; return to research instead of polishing an unsupported conclusion.
+7. Use [`scorecards/decision-readiness-scorecard.md`](scorecards/decision-readiness-scorecard.md) to decide whether the brief is ready for a decision meeting.
+8. After shipping, log feedback in [`templates/feedback-log.md`](templates/feedback-log.md).
 
 ### Option B: CLI
 

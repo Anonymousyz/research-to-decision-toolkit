@@ -2,7 +2,7 @@
 
 This repository is small on purpose. The roadmap prioritizes evidence, method clarity, and permission-safe reuse.
 
-## v0.5 — current hardened alpha
+## v0.5 — hardened alpha
 
 - [x] `r2d init`, `validate`, `score`, JSON output, and Markdown report
 - [x] Fixed four-area, 24-point structural contract
@@ -12,9 +12,13 @@ This repository is small on purpose. The roadmap prioritizes evidence, method cl
 - [x] Unified report renderer and documented exit codes
 - [x] Fictional end-to-end example and inactive CI template under `docs/`
 
-## v0.6 — validation and migration
+## v0.6 — current quality-review extension; validation incomplete
 
-- [ ] Add explicit schema-version and migration handling
+- [x] Add an explicit `schema_version: "0.6"` quality-review contract while retaining genuinely unversioned legacy-document compatibility and rejecting unknown versions
+- [x] Add concept/evidence/action gates and a reviewable argument chain
+- [x] Add Path A/B and an ordered five-pass judgment-writing record
+- [x] Render both review records in the Markdown decision packet
+- [ ] Add explicit migration output for future breaking schema changes
 - [ ] Compare two briefs across versions
 - [ ] Test at least 20 fictional or permission-cleared briefs with multiple reviewers
 - [ ] Measure item-level inter-rater agreement

@@ -4,13 +4,15 @@ A synthetic decision brief for an AI procurement-copilot pilot in a supplier-onb
 
 ## Files
 
-- `decision_brief.json` — structured brief used by the CLI
+- `decision_brief.json` — v0.6 structured brief with argument-quality and five-pass writing-review records
 - `decision_memo.md` — fictional memo
 - `evidence_matrix.md` — fictional evidence matrix
 - `feedback_log.md` — intentionally unfilled feedback log
 - `decision_report.md` — generated CLI report
 
 Public source URLs are real references, while all case-specific claims, percentages, names, reviewer declarations, and outcomes are fictional. The CLI does not fetch those URLs or authenticate the declarations.
+
+The quality-review records expose the case author's stated reasoning and revisions. They are not independent review, formal proof, or evidence that the fictional recommendation is correct.
 
 ## Run
 

@@ -20,6 +20,7 @@ This toolkit combines ideas from decision analysis, pre-mortem review, open/repr
 - Chip Heath and Dan Heath, *Decisive* — widening options, reality-testing assumptions, and preparing to be wrong.
 - Annie Duke, *Thinking in Bets* — separating decision quality from outcome quality.
 - Barbara Minto, *The Pyramid Principle* — decision-oriented structuring and communication.
+- Stephen Toulmin, *The Uses of Argument* — making claims, grounds, warrants, qualifiers, and rebuttals inspectable; the repository uses a simplified operational chain rather than reproducing Toulmin's model.
 - Colin Bryar and Bill Carr, *Working Backwards* — artifact-first clarification of customer value and decisions.
 
 Books are listed as influences rather than copied templates. Users should consult the original editions for exact claims.

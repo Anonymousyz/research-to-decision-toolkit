@@ -11,3 +11,7 @@ Use this module after the evidence brief is coherent but before commitment. It a
 5. Apply the [`decision-quality scorecard`](scorecards/decision-quality-scorecard.md).
 
 AI output is not evidence and cannot be the independent reviewer. The decision body remains accountable for source quality, challenge handling, and the final choice.
+
+## CLI boundary
+
+The module is a supplementary human-review path. The CLI's six-point `Decision review` area checks alternatives, criteria, stakeholders, reversibility, trade-offs, and one pre-mortem statement; it does not score the full assumption ledger, dated stop-condition workflow, or independent-human response in this module. Do not present the module's 16-point manual scorecard as part of the canonical CLI total.

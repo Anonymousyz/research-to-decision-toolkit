@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.6.0 — 2026-07-16
+
+- Added an opt-in, backward-compatible `schema_version: "0.6"` contract for argument-quality and judgment-writing records; explicit null and other unsupported version values now fail closed.
+- Added concept, evidence, and action gates plus explicit claim→evidence→inference→action chains with boundaries and counterevidence.
+- Added Path A/B and an ordered five-pass writing review covering judgment, evidence, structure, clarity, and delivery; `path` now has explicit current-disposition semantics.
+- Rendered both records in Markdown decision packets without changing the canonical 24-point score or 18-point threshold.
+- Upgraded the packaged fictional starter, completed the source distribution with documented repository assets, and documented that the new records are structural, uncalibrated, and human-accountable.
+- Hardened report output against direct, normalized, symbolic-link, and hard-link aliases of the source brief and aligned documented report exit codes with the CLI.
+- Rejected reserved-domain subdomains, trailing-dot aliases, non-global IP source URLs, missing hosts, legacy numeric/hex/short IPv4 spellings, and fragment-only duplicates so the two-primary-source threshold cannot be bypassed.
+- Added authorization and confidentiality gates to every external-model prompt, including the nested decision-review module.
+- Separated the supplementary 16-point and qualitative worksheets from the canonical 24-point CLI contract.
+- Added regression tests for schema versions, source protection, packaged initialization, prompt coverage, report readiness status, distribution completeness, and method boundaries.
+
 ## v0.5.2 — 2026-07-16
 
 - Added machine-readable citation metadata and complete package-discovery links.

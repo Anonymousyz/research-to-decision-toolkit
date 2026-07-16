@@ -70,7 +70,21 @@ def _cmd_score(path: str, fmt: str) -> int:
     return 1 if report["veto"] or report["total"] < 18 else 0
 
 
+def _same_file(left: Path, right: Path) -> bool:
+    try:
+        if left.exists() and right.exists() and left.samefile(right):
+            return True
+    except OSError:
+        pass
+    return left.resolve() == right.resolve()
+
+
 def _cmd_report(path: str, output: str) -> int:
+    source = Path(path)
+    destination = Path(output)
+    if _same_file(source, destination):
+        print("Refusing to overwrite the source decision brief", file=sys.stderr)
+        return 2
     try:
         doc = _load(path)
     except (OSError, ValueError) as exc:
@@ -81,20 +95,25 @@ def _cmd_report(path: str, output: str) -> int:
         _print_validation(errors, vetoes)
         return 2
     report = make_report(doc)
-    destination = Path(output)
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(render_markdown(doc, report), encoding="utf-8")
-    print(f"Wrote {destination}")
+    resolved_destination = destination.resolve()
+    resolved_destination.parent.mkdir(parents=True, exist_ok=True)
+    resolved_destination.write_text(render_markdown(doc, report), encoding="utf-8")
+    print(f"Wrote {resolved_destination}")
     return 1 if report["veto"] or report["total"] < 18 else 0
 
 
 def _cmd_init(output: str) -> int:
-    source = (
+    packaged = Path(__file__).resolve().parent / "data" / "starter_decision_brief.json"
+    source_tree = (
         Path(__file__).resolve().parents[2]
         / "examples"
         / "fictional-ai-governance-research-to-decision"
         / "decision_brief.json"
     )
+    source = packaged if packaged.exists() else source_tree
+    if not source.exists():
+        print("Could not locate the packaged starter decision brief", file=sys.stderr)
+        return 3
     destination = Path(output)
     if destination.exists():
         print(f"Refusing to overwrite existing file: {destination}", file=sys.stderr)

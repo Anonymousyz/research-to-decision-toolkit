@@ -1,0 +1,18 @@
+include README.md
+include LICENSE
+include .gitignore
+include CHANGELOG.md
+include CITATION.cff
+include MANIFESTO.md
+include SOURCES.md
+recursive-include docs *.md *.yml *.yaml
+recursive-include modules *.md *.json *.yml *.yaml
+recursive-include examples *.md *.json *.txt
+recursive-include prompts *.md
+recursive-include scorecards *.md
+recursive-include templates *.md
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include src/r2d/data *.json
+global-exclude __pycache__
+global-exclude *.py[cod]

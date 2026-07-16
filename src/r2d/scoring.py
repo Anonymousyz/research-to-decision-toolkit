@@ -56,11 +56,25 @@ def _is_verified_primary(claim: dict) -> bool:
     )
 
 
+def _source_identity(url: str) -> tuple[str, str, int | None, str, str]:
+    parsed = urlparse(url.strip())
+    scheme = parsed.scheme.lower()
+    host = (parsed.hostname or "").lower().rstrip(".")
+    try:
+        port = parsed.port
+    except ValueError:
+        port = None
+    if (scheme, port) in {("http", 80), ("https", 443)}:
+        port = None
+    path = parsed.path.rstrip("/") or "/"
+    return scheme, host, port, path, parsed.query
+
+
 def _evidence_score(doc: dict) -> AreaScore:
     claims = doc.get("claims", [])
     uncertainties = doc.get("uncertainties", [])
     verified_primary_urls = {
-        claim.get("source_url").strip()
+        _source_identity(claim.get("source_url"))
         for claim in claims
         if isinstance(claim, dict) and _is_verified_primary(claim)
     }
@@ -167,7 +181,48 @@ def render_markdown(doc: dict, report: dict) -> str:
             f"- What would change the conclusion: {claim['gap_that_changes_mind']}",
             "",
         ]
+    argument = doc.get("argument_quality")
+    if isinstance(argument, dict):
+        lines += [
+            "## Argument quality gates",
+            "",
+            f"- Review method: {argument.get('review_method')}",
+            f"- Accountable reviewer: {argument.get('reviewed_by')}",
+            f"- Reviewed at: {argument.get('reviewed_at')}",
+        ]
+        for name in ("concept", "evidence", "action"):
+            lines.append(f"- {name.title()} gate: {argument.get('gates', {}).get(name)}")
+        for index, item in enumerate(argument.get("chain", []), start=1):
+            lines += [
+                "",
+                f"### Argument chain {index}",
+                f"- Claim: {item.get('claim')}",
+                f"- Evidence: {item.get('evidence')}",
+                f"- Inference: {item.get('inference')}",
+                f"- Action: {item.get('action')}",
+                f"- Boundary: {item.get('boundary')}",
+                f"- Counterevidence: {item.get('counterevidence')}",
+            ]
+    writing = doc.get("writing_review")
+    if isinstance(writing, dict):
+        lines += [
+            "",
+            "## Five-pass writing review",
+            "",
+            f"- Path: {writing.get('path')}",
+            f"- Review method: {writing.get('review_method')}",
+            f"- Accountable reviewer: {writing.get('reviewed_by')}",
+            f"- Reviewed at: {writing.get('reviewed_at')}",
+        ]
+        for item in writing.get("passes", []):
+            lines += [
+                "",
+                f"### {item.get('name', '').title()}",
+                f"- Finding: {item.get('finding')}",
+                f"- Revision: {item.get('revision')}",
+            ]
     lines += [
+        "",
         "## Method note",
         "",
         report["method_boundary"],
@@ -177,4 +232,4 @@ def render_markdown(doc: dict, report: dict) -> str:
 
 
 def render_json(report: dict) -> str:
-    return json.dumps(report, ensure_ascii=False, indent=2)
+    return json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False)

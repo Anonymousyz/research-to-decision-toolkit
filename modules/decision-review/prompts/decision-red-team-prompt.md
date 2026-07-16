@@ -13,6 +13,8 @@ Return:
 
 Do not invent facts, sources, reviewers, approvals, or compliance conclusions. If evidence is missing, say "missing".
 
+Information boundary: paste only fictional, public, or explicitly authorized material. Do not send confidential client, employer, personal, or regulated data to an external model. Anonymization alone is not permission. A human must decide whether model use is authorized before supplying the brief.
+
 Brief:
 <paste brief>
 ```

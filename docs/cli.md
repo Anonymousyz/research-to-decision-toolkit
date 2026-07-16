@@ -26,14 +26,24 @@ python -m r2d --help
 
 | Code | Meaning |
 |---:|---|
-| 0 | `init`, `validate`, or `report` completed; for `score`, the document reached 18/24 with no structural veto |
-| 1 | `score` completed but the document is below 18/24 or has a structural veto |
+| 0 | `init` or `validate` completed; `score` or `report` reached 18/24 with no structural veto |
+| 1 | `score` or `report` completed but the document is below 18/24 or has a structural veto |
 | 2 | Schema/validation failure or refusal to overwrite a protected/source path |
 | 3 | File or JSON input error |
 
 A code of `0` is not approval, evidence authentication, compliance advice, or authority to implement.
 
-## v0.5 source declarations
+## v0.6 quality-review extension
+
+Documents that declare `schema_version: "0.6"` must include:
+
+- `argument_quality`: concept/evidence/action gates plus at least one claim→evidence→inference→action chain with a boundary and counterevidence;
+- `writing_review`: Path A or B plus the ordered judgment, evidence, structure, clarity, and delivery passes;
+- accountable reviewer, date, and `human` or `human-with-ai-assistance` method declarations for both reviews.
+
+The extension is structural and unscored. The canonical readiness score remains 24 points. Older documents with no `schema_version` remain valid under the legacy contract. If the field is present, only the string `"0.6"` is accepted; unknown versions and wrong types fail closed.
+
+## Source declarations
 
 Primary and secondary claims require:
 
@@ -47,3 +57,5 @@ These fields make responsibility reviewable. They do **not** prove that the huma
 ## Report safety
 
 `r2d report` refuses to overwrite its source file. Review generated Markdown before circulation and publish only fictional, public, or explicitly authorized material.
+
+The starter copied by `r2d init` is included in the installed wheel; the command does not depend on a source checkout.

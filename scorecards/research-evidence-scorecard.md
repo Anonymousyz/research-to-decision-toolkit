@@ -31,9 +31,11 @@ If the brief claims a low-risk decision but the reverse-score is high, the brief
 
 ## Output
 
-- Strength: __ / 24
-- Reverse-score: __ / 8
-- Action: more evidence / ship as-is / defer
+This supplementary worksheet does not use the CLI's canonical 24-point scale. Record:
+
+- Evidence judgment: strong / mixed / weak
+- Reverse-score: count of high-impact surprises not adequately addressed
+- Action: more evidence / revise the brief / defer to the accountable decision body
 
 ## Worked example
 
