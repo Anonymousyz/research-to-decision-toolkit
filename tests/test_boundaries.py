@@ -40,6 +40,14 @@ class DocumentationBoundaryTests(unittest.TestCase):
         self.assertIn("Structurally ready for human decision meeting", text)
         self.assertIn("23/24", text)
 
+    def test_ai_deployment_handoff_guide_is_bounded_and_linked(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
+        guide = (ROOT / "docs" / "using_r2d_after_ai_prototype_review.md").read_text(encoding="utf-8-sig").lower()
+        self.assertIn("docs/using_r2d_after_ai_prototype_review.md", readme)
+        self.assertIn("prototype-to-production-toolkit", guide)
+        self.assertIn("neither cli passes an assessment automatically", guide)
+        self.assertIn("does not verify the source material", guide)
+
 
 if __name__ == "__main__":
     unittest.main()
