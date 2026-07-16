@@ -1,31 +1,30 @@
 # Research-to-Decision Toolkit
 
-> **Open research → evidence → decision → artifact → feedback.**
+> **Open research → evidence → human decision → reusable artifact → feedback.**
 
-A small public toolkit for turning research into a decision packet people can review and reuse.
+A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment evidence into a decision packet that accountable people can review, challenge, and reuse.
+
+The repository addresses a common failure mode in advisory and applied-AI work: evidence is collected, slides are written, and yet nobody can identify the actual decision, the alternatives, the owner, the default outcome, the conditions that would change the conclusion, or the artifact that remains after the meeting. R2D gives those elements a shared structure.
 
 > [!IMPORTANT]
 > The fixed 24-point score is an author-designed, uncalibrated structural-workflow heuristic. “Structurally ready for human decision meeting” does not mean approved, correct, compliant, or ready to implement. Human source-check fields are declarations; the CLI does not fetch or authenticate sources. See [`docs/method_status.md`](docs/method_status.md).
 
 ```text
-problem → evidence → judgment → artifact → feedback → iteration
+problem → evidence → judgment → alternatives and controls → human decision → reusable artifact → feedback
 ```
 
-It is for researchers, policy analysts, consultants, product owners, independent builders, and forward-deployed engineers who need research to survive outside the original conversation.
+It is useful for researchers, policy analysts, consultants, product owners, independent builders, forward-deployed engineers, and governance practitioners who need analysis to survive outside the original conversation.
 
-It is **not**:
+## What the toolkit structures
 
-- a personal productivity system;
-- a journaling system;
-- a project management tool;
-- a substitute for domain expertise.
+| Decision-packet layer | Required question | Public artifact |
+|---|---|---|
+| Decision framing | What decision is being made, by whom, by when, and what happens by default? | problem-framing canvas, decision memo |
+| Evidence | Which claims are facts, judgments, assumptions, or recommendations? What is weakest? | evidence matrix, source declaration, uncertainty list |
+| Decision review | What are the alternatives, criteria, stakeholders, reversibility, trade-offs, and credible failure modes? | decision-review module, pre-mortem, red-team prompt |
+| Artifact and feedback | What will survive the meeting, who owns it, and what feedback can change the next move? | artifact brief, acceptance criteria, feedback log |
 
-It **is**:
-
-- a small set of reusable canvases, templates, and prompts;
-- a way to separate evidence from judgment from excitement;
-- a way to publish research into assets other people can copy;
-- a way to run a public feedback loop without relying on closed networks.
+The toolkit is deliberately narrower than a project-management system and broader than a note-taking template. It does not replace domain expertise, legal review, security review, or accountable judgment. It makes the structure of those conversations inspectable.
 
 ---
 

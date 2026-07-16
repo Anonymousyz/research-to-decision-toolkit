@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.1 — 2026-07-16
+
+- Expanded the README with professional decision-packet context for research, policy analysis, product discovery, and AI deployment.
+- Added a clear four-layer explanation of decision framing, evidence, decision review, and artifact/feedback.
+- Preserved the v0.5 structural scoring and source-declaration contract; this patch changes presentation and package metadata, not the decision threshold.
+
 ## v0.5.0 — 2026-07-15
 
 - Reframed the 24-point result as structural workflow readiness for a human decision meeting, not decision quality.

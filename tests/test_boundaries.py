@@ -27,13 +27,13 @@ class DocumentationBoundaryTests(unittest.TestCase):
         self.assertNotIn("Artifact plan — 6 points", text)
         self.assertNotIn("Feedback loop — 6 points", text)
 
-    def test_package_versions_match(self):
+    def test_package_versions_match_v051(self):
         pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8-sig")
         init = (ROOT / "src" / "r2d" / "__init__.py").read_text(encoding="utf-8-sig")
         p_ver = re.search(r'^version = "([^"]+)"', pyproject, re.MULTILINE).group(1)
         i_ver = re.search(r'__version__ = "([^"]+)"', init).group(1)
         self.assertEqual(p_ver, i_ver)
-        self.assertEqual(p_ver, "0.5.0")
+        self.assertEqual(p_ver, "0.5.1")
 
     def test_example_readme_matches_cli_verdict(self):
         text = (ROOT / "examples" / "fictional-ai-governance-research-to-decision" / "README.md").read_text(encoding="utf-8-sig")
