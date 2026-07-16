@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.2 — 2026-07-16
+
+- Added machine-readable citation metadata and complete package-discovery links.
+- Added release, license, and supported-Python badges to the public entry point.
+- Kept the v0.5 decision-packet contract, thresholds, and CLI behavior unchanged.
+
 ## v0.5.1 — 2026-07-16
 
 - Expanded the README with professional decision-packet context for research, policy analysis, product discovery, and AI deployment.

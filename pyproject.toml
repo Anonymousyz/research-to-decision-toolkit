@@ -5,13 +5,36 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "research-to-decision-toolkit"
-version = "0.5.1"
+version = "0.5.2"
 description = "Validate, score, and report evidence-backed research-to-decision briefs."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
 authors = [{name = "Anonymousyz"}]
 dependencies = []
+keywords = [
+  "decision-support",
+  "evidence",
+  "research",
+  "ai-governance",
+  "policy-analysis",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/Anonymousyz/research-to-decision-toolkit"
+Repository = "https://github.com/Anonymousyz/research-to-decision-toolkit"
+Issues = "https://github.com/Anonymousyz/research-to-decision-toolkit/issues"
 
 [project.scripts]
 r2d = "r2d.cli:main"

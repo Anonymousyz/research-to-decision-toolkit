@@ -1,5 +1,9 @@
 # Research-to-Decision Toolkit
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue)
+![GitHub release](https://img.shields.io/github/v/release/Anonymousyz/research-to-decision-toolkit)
+
 > **Open research → evidence → human decision → reusable artifact → feedback.**
 
 A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment evidence into a decision packet that accountable people can review, challenge, and reuse.

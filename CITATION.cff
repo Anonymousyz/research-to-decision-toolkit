@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this toolkit, please cite this repository and release."
+title: "Research-to-Decision Toolkit"
+type: software
+authors:
+  - name: "Anonymousyz"
+repository-code: "https://github.com/Anonymousyz/research-to-decision-toolkit"
+url: "https://github.com/Anonymousyz/research-to-decision-toolkit"
+license: MIT
+version: 0.5.2
+date-released: 2026-07-16
+abstract: >-
+  A local-first toolkit for structuring evidence, alternatives, decision
+  review, reusable artifacts, and feedback into a packet for accountable
+  human decision makers.
+keywords:
+  - decision-support
+  - evidence
+  - research
+  - ai-governance
+  - policy-analysis
