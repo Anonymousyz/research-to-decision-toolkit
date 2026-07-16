@@ -8,6 +8,7 @@
 - Rejected reserved/example source domains and malformed nested field types.
 - Separated schema errors from structural vetoes and made CLI exit codes reflect invalid, vetoed, and not-ready inputs.
 - Unified duplicate Markdown report implementations and preserved `init`, `--json`, and `-o` compatibility.
+- Added an AI-deployment handoff guide that distinguishes prototype readiness from a separate human decision packet.
 
 ## v0.4.1 — 2026-07-15
 
