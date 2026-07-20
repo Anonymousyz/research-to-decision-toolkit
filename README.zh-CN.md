@@ -14,6 +14,17 @@
 > [!IMPORTANT]
 > 固定的 24 分是作者自行设计、**未经校准**的结构完整度启发式。"结构上可进入决策会议"不等于方案正确、合规或可以执行。来源核查字段是人工申报;CLI 不抓取也不验证 URL 内容。方法边界见 [`docs/method_status.md`](docs/method_status.md)。
 
+## 60 秒试用
+
+```bash
+python -m pip install "https://github.com/Anonymousyz/research-to-decision-toolkit/releases/download/v0.6.0/research_to_decision_toolkit-0.6.0-py3-none-any.whl"
+r2d init brief.json
+r2d validate brief.json
+r2d report brief.json --output decision_report.md
+```
+
+起步 brief 是一个可通过校验的虚构示例。把它替换为授权来源、备选方案、决策归属与反馈标准后,重新跑校验即可。
+
 ## 工作流
 
 ```text
@@ -25,7 +36,7 @@
 ```mermaid
 flowchart LR
     A["界定决策<br/><i>问题界定画布</i>"] --> B["整理证据<br/><i>证据矩阵 + 来源申报</i>"]
-    B --> C["质疑承诺<br/><i>决策评审模块:备选方案、<br/>事前验尸、红队提问</i>"]
+    B --> C["质疑承诺<br/><i>决策评审模块:备选方案、<br/>事前验尸、红队提示词</i>"]
     C --> D["结构检查<br/><i>r2d CLI:24 分制,<br/>3 条结构性否决</i>"]
     D --> E["决策会议<br/><i>决策备忘录,明确负责人</i>"]
     E --> F["可复用产物<br/><i>产物简报与验收标准</i>"]
@@ -109,7 +120,7 @@ flowchart TB
         A4["产物与反馈<br/>产物形式、负责人、验收标准、<br/>反馈渠道、反馈日志"]
     end
     areas --> S{"结构性否决?<br/>决策主体为空 · 默认结果为空 ·<br/>没有任何论断说明什么证据会改变结论"}
-    S -- "命中任意一条" --> V["未就绪:存在否决项<br/>(总分无效)"]
+    S -- "命中任意一条" --> V["未就绪:存在否决项<br/>(无论总分多少)"]
     S -- "无否决且 ≥ 18/24" --> R["结构上可进入决策会议"]
     S -- "无否决且 < 18/24" --> W["先修订再开会"]
 ```

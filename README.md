@@ -22,8 +22,6 @@ r2d report brief.json --output decision_report.md
 
 The starter brief is a valid fictional example. Replace it with permission-cleared sources, alternatives, decision ownership and feedback criteria, then rerun validation. See the [fictional end-to-end case](examples/fictional-ai-governance-research-to-decision/README.md) or submit a [field-test report](https://github.com/Anonymousyz/research-to-decision-toolkit/issues/new?template=field-test.yml).
 
-> **Open research → evidence → human decision → reusable artifact → feedback.**
-
 A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment evidence into a decision packet that accountable people can review, challenge, and reuse.
 
 The repository addresses a common failure mode in advisory and applied-AI work: evidence is collected, slides are written, and yet nobody can identify the actual decision, the alternatives, the owner, the default outcome, the conditions that would change the conclusion, or the artifact that remains after the meeting. R2D gives those elements a shared structure.
@@ -96,7 +94,7 @@ The workflow helps you:
 | AI prompts | [`prompts/research-synthesis-prompt.md`](prompts/research-synthesis-prompt.md), [`prompts/critical-review-prompt.md`](prompts/critical-review-prompt.md), [`prompts/public-artifact-transform-prompt.md`](prompts/public-artifact-transform-prompt.md) | Use AI to draft, stress-test, and transform |
 | Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
 | CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Initialize, validate, score, and report a decision brief locally |
-| Tests | [`tests/test_r2d.py`](tests/test_r2d.py) | Schema, score invariants, veto, reporting, and CLI behavior |
+| Tests | [`tests/`](tests/) | Schema, score invariants, veto, reporting, CLI behavior, and documentation boundaries |
 | CI | [`.github/workflows/validate.yml`](.github/workflows/validate.yml) | Active GitHub Actions validation workflow (Python 3.9/3.11/3.12), published from [`docs/github_actions_validate.template.yml`](docs/github_actions_validate.template.yml) |
 | Method boundary | [`docs/method_status.md`](docs/method_status.md) | Explain what the score can and cannot establish |
 | AI deployment context | [`docs/using_r2d_after_ai_prototype_review.md`](docs/using_r2d_after_ai_prototype_review.md) | Show how a prototype-readiness assessment becomes a separate human decision packet |
