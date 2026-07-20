@@ -26,8 +26,8 @@ python -m r2d --help
 
 | Code | Meaning |
 |---:|---|
-| 0 | `init` or `validate` completed; `score` or `report` reached 18/24 with no structural veto |
-| 1 | `score` or `report` completed but the document is below 18/24 or has a structural veto |
+| 0 | `init` completed; `validate` found no errors and no vetoes; `score` or `report` reached 18/24 with no structural veto |
+| 1 | `validate` found a structurally valid brief with veto items; `score` or `report` completed but the document is below 18/24 or has a structural veto |
 | 2 | Schema/validation failure or refusal to overwrite a protected/source path |
 | 3 | File or JSON input error |
 

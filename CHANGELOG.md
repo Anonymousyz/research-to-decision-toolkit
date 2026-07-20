@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Published the active GitHub Actions validation workflow from the documented template (Python 3.9/3.11/3.12 matrix) now that a workflow-scope credential is available.
+- Added a Cursor cloud-agent environment definition (`.cursor/environment.json`) so hosted agents install the package before working.
+- Documented the previously implicit exit code 1 for `validate` on structurally valid briefs that carry veto items.
+- Guarded `python -m r2d` module execution against import-time exit and shipped `py.typed` so downstream type checkers can use the annotations.
+
 ## v0.6.0 — 2026-07-16
 
 - Added an opt-in, backward-compatible `schema_version: "0.6"` contract for argument-quality and judgment-writing records; explicit null and other unsupported version values now fail closed.

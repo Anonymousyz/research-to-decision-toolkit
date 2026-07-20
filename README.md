@@ -81,7 +81,7 @@ The workflow helps you:
 | Example | [`examples/fictional-ai-governance-research-to-decision/`](examples/fictional-ai-governance-research-to-decision/) | A fictional end-to-end case |
 | CLI | [`src/r2d`](src/r2d), [`docs/cli.md`](docs/cli.md) | Initialize, validate, score, and report a decision brief locally |
 | Tests | [`tests/test_r2d.py`](tests/test_r2d.py) | Schema, score invariants, veto, reporting, and CLI behavior |
-| CI template | [`docs/github_actions_validate.template.yml`](docs/github_actions_validate.template.yml) | Copy-ready validation workflow; intentionally inactive until a token with `workflow` scope is available |
+| CI | [`.github/workflows/validate.yml`](.github/workflows/validate.yml) | Active GitHub Actions validation workflow (Python 3.9/3.11/3.12), published from [`docs/github_actions_validate.template.yml`](docs/github_actions_validate.template.yml) |
 | Method boundary | [`docs/method_status.md`](docs/method_status.md) | Explain what the score can and cannot establish |
 | AI deployment context | [`docs/using_r2d_after_ai_prototype_review.md`](docs/using_r2d_after_ai_prototype_review.md) | Show how a prototype-readiness assessment becomes a separate human decision packet |
 | Quickstart | [`docs/quickstart.md`](docs/quickstart.md) | 10 minutes to first decision brief |

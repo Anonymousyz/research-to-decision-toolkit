@@ -1,0 +1,4 @@
+{
+  "name": "research-to-decision-toolkit",
+  "install": "python3 -m pip install -e ."
+}

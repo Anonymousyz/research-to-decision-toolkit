@@ -23,7 +23,7 @@ This repository is small on purpose. The roadmap prioritizes evidence, method cl
 - [ ] Test at least 20 fictional or permission-cleared briefs with multiple reviewers
 - [ ] Measure item-level inter-rater agreement
 - [ ] Add stale-source and contradictory-source fixtures
-- [ ] Publish an active GitHub Actions workflow only with explicit workflow-scope authorization
+- [x] Publish an active GitHub Actions workflow only with explicit workflow-scope authorization
 
 ## v1.0 — validated public method
 

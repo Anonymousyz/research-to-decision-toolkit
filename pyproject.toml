@@ -42,4 +42,4 @@ r2d = "r2d.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-r2d = ["data/*.json"]
+r2d = ["data/*.json", "py.typed"]
