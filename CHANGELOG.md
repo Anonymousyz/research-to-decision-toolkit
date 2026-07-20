@@ -7,6 +7,7 @@
 - Added a Cursor cloud-agent environment definition (`.cursor/environment.json`) so hosted agents install the package before working.
 - Documented the previously implicit exit code 1 for `validate` on structurally valid briefs that carry veto items.
 - Guarded `python -m r2d` module execution against import-time exit and shipped `py.typed` so downstream type checkers can use the annotations.
+- Added an `AGENTS.md` that binds coding agents to the frozen 24-point/three-veto contract, the zero-dependency policy, and the docs-backed-by-tests discipline.
 
 ## v0.6.0 — 2026-07-16
 
