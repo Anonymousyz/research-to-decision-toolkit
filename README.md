@@ -3,6 +3,9 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![GitHub release](https://img.shields.io/github/v/release/Anonymousyz/research-to-decision-toolkit)
+[![validate](https://github.com/Anonymousyz/research-to-decision-toolkit/actions/workflows/validate.yml/badge.svg)](https://github.com/Anonymousyz/research-to-decision-toolkit/actions/workflows/validate.yml)
+
+[中文说明](README.zh-CN.md)
 
 <p align="center">
   <img src="assets/r2d-overview.svg" alt="Research-to-Decision Toolkit: research, evidence, judgment, decision and feedback" width="100%">
@@ -30,6 +33,19 @@ The repository addresses a common failure mode in advisory and applied-AI work: 
 
 ```text
 problem → evidence → judgment → alternatives and controls → human decision → reusable artifact → feedback
+```
+
+Each stage has a template, a module, or a CLI check behind it:
+
+```mermaid
+flowchart LR
+    A["Frame the decision<br/><i>problem-framing canvas</i>"] --> B["Organize evidence<br/><i>evidence matrix + source declarations</i>"]
+    B --> C["Challenge the commitment<br/><i>decision-review module: alternatives,<br/>pre-mortem, red team</i>"]
+    C --> D["Check structure<br/><i>r2d CLI: 24-point score,<br/>3 structural vetoes</i>"]
+    D --> E["Human decision meeting<br/><i>decision memo, named owner</i>"]
+    E --> F["Reusable artifact<br/><i>public-artifact brief,<br/>acceptance criteria</i>"]
+    F --> G["Feedback<br/><i>feedback log, next-move threshold</i>"]
+    G -. "new evidence reopens the question" .-> B
 ```
 
 It is useful for researchers, policy analysts, consultants, product owners, independent builders, forward-deployed engineers, and governance practitioners who need analysis to survive outside the original conversation.
@@ -127,6 +143,26 @@ Top gaps:
 ```
 
 See [`docs/cli.md`](docs/cli.md).
+
+### What the score measures
+
+The CLI checks structural completeness in four areas of six points each. Three veto conditions block the "ready" verdict at any score, and 18/24 is the readiness threshold:
+
+```mermaid
+flowchart TB
+    subgraph areas["Four areas, 6 points each — 24 total"]
+        A1["Decision framing<br/>decision, body, default outcome,<br/>deadline, 3+ claims, 3+ uncertainties"]
+        A2["Evidence quality<br/>2+ human-checked primary sources,<br/>weakest link named per claim"]
+        A3["Decision review<br/>2+ alternatives, criteria, stakeholders,<br/>reversibility, trade-off, pre-mortem"]
+        A4["Artifact and feedback<br/>artifact form, owner, acceptance criteria,<br/>feedback channels, log"]
+    end
+    areas --> S{"Structural vetoes?<br/>empty decision body · empty default outcome ·<br/>no claim says what would change the conclusion"}
+    S -- "any veto" --> V["Not ready: veto present<br/>(any total)"]
+    S -- "no veto, ≥ 18/24" --> R["Structurally ready for<br/>human decision meeting"]
+    S -- "no veto, < 18/24" --> W["Revise before meeting"]
+```
+
+"Structurally ready" means the workflow is complete enough to put in front of accountable people. It does not grade whether the decision is correct.
 
 ---
 

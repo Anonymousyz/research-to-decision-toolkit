@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Published the active GitHub Actions validation workflow from the documented template (Python 3.9/3.11/3.12 matrix) now that a workflow-scope credential is available.
+- Published the active GitHub Actions validation workflow from the documented template (Python 3.9/3.11/3.12 matrix) now that a workflow-scope credential is available, and added the workflow badge to the README.
+- Added a full Chinese README (`README.zh-CN.md`) and two Mermaid diagrams to both languages: the stage-by-stage workflow map and the 24-point/veto scoring flow.
 - Added a Cursor cloud-agent environment definition (`.cursor/environment.json`) so hosted agents install the package before working.
 - Documented the previously implicit exit code 1 for `validate` on structurally valid briefs that carry veto items.
 - Guarded `python -m r2d` module execution against import-time exit and shipped `py.typed` so downstream type checkers can use the annotations.
