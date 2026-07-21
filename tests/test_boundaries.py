@@ -70,6 +70,23 @@ class DocumentationBoundaryTests(unittest.TestCase):
             self.assertIn("human", text)
             self.assertIn("not", text)
 
+    def test_readme_relative_links_resolve(self):
+        # Guards reader navigation in both languages: renames must fail here
+        # instead of silently breaking README links. Fenced code is stripped;
+        # images and directory links are included.
+        link = re.compile(r"!?\[[^\]]*\]\(<?([^)<>\s]+?)>?(?:\s+\"[^\"]*\")?\)")
+        for name in ("README.md", "README.zh-CN.md"):
+            text = (ROOT / name).read_text(encoding="utf-8-sig")
+            text = re.sub(r"^```.*?^```", "", text, flags=re.DOTALL | re.MULTILINE)
+            targets = link.findall(text)
+            self.assertTrue(targets, name)
+            for target in targets:
+                if target.startswith(("http://", "https://", "mailto:", "#")):
+                    continue
+                path = target.split("#", 1)[0]
+                with self.subTest(readme=name, link=target):
+                    self.assertTrue((ROOT / path).exists(), f"{name}: broken relative link {target}")
+
     def test_release_distribution_and_current_path_contract(self):
         manifest = (ROOT / "MANIFEST.in").read_text(encoding="utf-8-sig")
         changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8-sig")
