@@ -31,16 +31,16 @@ r2d report brief.json --output decision_report.md
 问题 → 证据 → 判断 → 备选与控制 → 人的决策 → 可复用产物 → 反馈
 ```
 
-每一步都有对应的模板、模块或 CLI 检查:
+每一步都有对应的模板、模块或 CLI 检查：
 
 ```mermaid
 flowchart LR
     A["界定决策<br/><i>问题界定画布</i>"] --> B["整理证据<br/><i>证据矩阵 + 来源申报</i>"]
-    B --> C["质疑承诺<br/><i>决策评审模块:备选方案、<br/>预先推演失败情境、红队提示词</i>"]
-    C --> D["结构检查<br/><i>r2d CLI:24 分制,<br/>3 条结构性否决</i>"]
-    D --> E["决策会议<br/><i>决策备忘录,明确负责人</i>"]
+    B --> C["质疑承诺<br/><i>决策评审模块：备选方案、<br/>预先推演失败情境、红队提示词</i>"]
+    C --> D["结构检查<br/><i>r2d CLI：24 分制，<br/>3 条结构性否决</i>"]
+    D --> E["决策会议<br/><i>决策备忘录，明确负责人</i>"]
     E --> F["可复用产物<br/><i>产物简报与验收标准</i>"]
-    F --> G["反馈<br/><i>反馈日志,下一步触发条件</i>"]
+    F --> G["反馈<br/><i>反馈日志，下一步触发条件</i>"]
     G -. "新证据重启问题" .-> B
 ```
 
@@ -48,10 +48,10 @@ flowchart LR
 
 | 决策包层次 | 必须回答的问题 | 对应公开产物 |
 |---|---|---|
-| 决策界定 | 在决定什么?由谁、何时决定?不决定的默认结果是什么? | 问题界定画布、决策备忘录 |
-| 证据 | 哪些说法是事实、判断、假设、建议?最薄弱的环节在哪? | 证据矩阵、来源申报、不确定性清单 |
-| 决策评审 | 备选方案、判据、利益相关方、可逆性、代价、可信的失败方式是什么? | 决策评审模块、预先推演失败情境、红队提示词 |
-| 产物与反馈 | 会后留下什么?谁负责?什么反馈会改变下一步? | 产物简报、验收标准、反馈日志 |
+| 决策界定 | 在决定什么？由谁、何时决定？不决定的默认结果是什么？ | 问题界定画布、决策备忘录 |
+| 证据 | 哪些说法是事实、判断、假设或建议？最薄弱的环节在哪？ | 证据矩阵、来源申报、不确定性清单 |
+| 决策评审 | 备选方案、判据、利益相关方、可逆性、代价和可信的失败方式是什么？ | 决策评审模块、预先推演失败情境、红队提示词 |
+| 产物与反馈 | 会后留下什么？谁负责？什么反馈会改变下一步？ | 产物简报、验收标准、反馈日志 |
 
 R2D 不承担项目管理。它把证据、判断、备选方案和会后行动放进同一份可审议的材料；领域知识、法律审查、安全审查和负责人的判断仍需由相应责任主体承担。
 
@@ -67,18 +67,18 @@ R2D 不承担项目管理。它把证据、判断、备选方案和会后行动�
 
 ## 快速开始
 
-### 方式 A:纯手工
+### 方式 A：纯手工
 
-1. 用[问题界定画布](templates/problem-framing-canvas.md)写下真正的决策问题;
-2. 把论断整理进[证据矩阵](templates/evidence-matrix.md);
-3. 用[决策备忘录](templates/decision-memo.md)形成决定;
-4. 用[产物简报](templates/public-artifact-brief.md)确定产出形式;
-5. 用[论证质量门](modules/argument-quality/)暴露推理、边界与反证;
-6. 跑一遍[判断写作五遍审查](modules/judgment-writing/);结论撑不住就回去补研究,不要润色;
-7. 用[决策就绪计分卡](scorecards/decision-readiness-scorecard.md)判断是否可以进入决策会议;
-8. 发布后,把反馈记进[反馈日志](templates/feedback-log.md)。
+1. 用[问题界定画布](templates/problem-framing-canvas.md)写下真正的决策问题。
+2. 把论断整理进[证据矩阵](templates/evidence-matrix.md)。
+3. 用[决策备忘录](templates/decision-memo.md)形成决定。
+4. 用[产物简报](templates/public-artifact-brief.md)确定产出形式。
+5. 用[论证质量门](modules/argument-quality/)检查推理、边界与反证。
+6. 跑一遍[判断写作五遍审查](modules/judgment-writing/)。结论撑不住，就回去补研究，不要只润色。
+7. 用[决策就绪计分卡](scorecards/decision-readiness-scorecard.md)判断是否可以进入决策会议。
+8. 发布后，把反馈记进[反馈日志](templates/feedback-log.md)。
 
-### 方式 B:CLI
+### 方式 B：CLI
 
 ```bash
 python -m venv .venv
@@ -90,7 +90,7 @@ r2d score   examples/fictional-ai-governance-research-to-decision/decision_brief
 r2d report  examples/fictional-ai-governance-research-to-decision/decision_brief.json --output decision_report.md
 ```
 
-预期输出:
+预期输出：
 
 ```text
 Decision: Structurally ready for human decision meeting
@@ -149,4 +149,4 @@ flowchart TB
 
 ## 许可证
 
-MIT,见 [`LICENSE`](LICENSE)。
+MIT，见 [`LICENSE`](LICENSE)。

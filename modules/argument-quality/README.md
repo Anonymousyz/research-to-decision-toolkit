@@ -15,7 +15,7 @@ It is an author-designed operational synthesis for decision packets. Its scope i
 2. **Evidence gate**: separate the claim, source, inference, uncertainty, and contrary evidence.
 3. **Action gate**: state, in one reviewer-authored free-text declaration, the strongest action supported now and address its owner, boundary, stop condition, and fallback.
 
-The runtime checks that each gate is non-empty. It cannot parse or independently verify whether a free-text action declaration includes every component or whether those components are sound; a human reviewer must make that judgment.
+The runtime checks that each gate is non-empty. It does not parse or independently verify whether a free-text action declaration includes every component or whether those components are sound; a human reviewer must make that judgment.
 
 A packet can pass the schema while the underlying reasoning remains wrong. The CLI checks structure only; an accountable human must inspect the sources, inference, counterevidence, and consequences.
 
