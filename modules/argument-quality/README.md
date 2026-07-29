@@ -7,15 +7,15 @@ concept gate → evidence gate → action gate
 claim → evidence → inference → action → boundary → counterevidence
 ```
 
-It is an author-designed operational synthesis for decision packets. It is **not** a new formal logic, proof system, truth engine, fact checker, or substitute for domain review.
+It is an author-designed operational synthesis for decision packets. Its scope is limited: it does not create a formal logic or proof system, check facts, or replace domain review.
 
 ## Three gates
 
-1. **Concept gate** — define the terms whose ambiguity could change the decision.
-2. **Evidence gate** — separate the claim, source, inference, uncertainty, and contrary evidence.
-3. **Action gate** — state, in one reviewer-authored free-text declaration, the strongest action supported now and address its owner, boundary, stop condition, and fallback.
+1. **Concept gate**: define the terms whose ambiguity could change the decision.
+2. **Evidence gate**: separate the claim, source, inference, uncertainty, and contrary evidence.
+3. **Action gate**: state, in one reviewer-authored free-text declaration, the strongest action supported now and address its owner, boundary, stop condition, and fallback.
 
-The runtime checks that each gate is non-empty. It **does not parse or independently verify** that a free-text action declaration actually contains every component or that those components are sound; that remains a human review responsibility.
+The runtime checks that each gate is non-empty. It cannot parse or independently verify whether a free-text action declaration includes every component or whether those components are sound; a human reviewer must make that judgment.
 
 A packet can pass the schema while the underlying reasoning remains wrong. The CLI checks structure only; an accountable human must inspect the sources, inference, counterevidence, and consequences.
 
@@ -23,12 +23,12 @@ A packet can pass the schema while the underlying reasoning remains wrong. The C
 
 Each v0.6 `argument_quality.chain` item records:
 
-- `claim` — the proposition under review;
-- `evidence` — the material actually offered in support;
-- `inference` — why the evidence is said to support the claim;
-- `action` — the bounded next move;
-- `boundary` — what the claim does not authorize;
-- `counterevidence` — the observation that would weaken or reverse the move.
+- `claim`: the proposition under review;
+- `evidence`: the material actually offered in support;
+- `inference`: why the evidence is said to support the claim;
+- `action`: the bounded next move;
+- `boundary`: what the claim does not authorize;
+- `counterevidence`: the observation that would weaken or reverse the move.
 
 Use one main chain per important commitment. Do not stack methods merely to appear rigorous.
 
