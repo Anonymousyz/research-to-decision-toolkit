@@ -11,7 +11,7 @@
   <img src="assets/r2d-overview.svg" alt="Research-to-Decision Toolkit: research, evidence, judgment, decision and feedback" width="100%">
 </p>
 
-## Try it in 60 seconds
+## Quick start
 
 ```bash
 python -m pip install "https://github.com/Anonymousyz/research-to-decision-toolkit/releases/download/v0.6.0/research_to_decision_toolkit-0.6.0-py3-none-any.whl"
@@ -22,12 +22,12 @@ r2d report brief.json --output decision_report.md
 
 The starter brief is a valid fictional example. Replace it with permission-cleared sources, alternatives, decision ownership and feedback criteria, then rerun validation. See the [fictional end-to-end case](examples/fictional-ai-governance-research-to-decision/README.md) or submit a [field-test report](https://github.com/Anonymousyz/research-to-decision-toolkit/issues/new?template=field-test.yml).
 
-A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment evidence into a decision packet that accountable people can review, challenge, and reuse.
+A local-first toolkit for turning research, policy analysis, product discovery, and AI-deployment material into a decision packet that a responsible owner can review, question, and use after the meeting.
 
-The repository addresses a common failure mode in advisory and applied-AI work: evidence is collected, slides are written, and yet nobody can identify the actual decision, the alternatives, the owner, the default outcome, the conditions that would change the conclusion, or the artifact that remains after the meeting. R2D gives those elements a shared structure.
+Use it when the material does not yet answer the practical questions: what decision is needed, what alternatives exist, who owns it, what happens by default, what evidence could change the conclusion, and what record should remain after the meeting. R2D provides a shared structure for those questions.
 
 > [!IMPORTANT]
-> The fixed 24-point score is an author-designed, uncalibrated structural-workflow heuristic. “Structurally ready for human decision meeting” does not mean approved, correct, compliant, or ready to implement. Human source-check fields are declarations; the CLI does not fetch or authenticate sources. See [`docs/method_status.md`](docs/method_status.md).
+> The fixed 24-point score is an author-designed, uncalibrated structural-workflow heuristic. It checks whether required workflow fields are present; it does not approve a plan, establish correctness or compliance, or authenticate sources. Human source-check fields remain declarations. See [`docs/method_status.md`](docs/method_status.md).
 
 ```text
 problem → evidence → judgment → alternatives and controls → human decision → reusable artifact → feedback
@@ -46,7 +46,7 @@ flowchart LR
     G -. "new evidence reopens the question" .-> B
 ```
 
-It is useful for researchers, policy analysts, consultants, product owners, independent builders, forward-deployed engineers, and governance practitioners who need analysis to survive outside the original conversation.
+Researchers, policy analysts, consultants, product owners, independent builders, forward-deployed engineers, and governance practitioners can use it when an analysis must survive outside the original conversation.
 
 ## What the toolkit structures
 
@@ -57,15 +57,13 @@ It is useful for researchers, policy analysts, consultants, product owners, inde
 | Decision review | What are the alternatives, criteria, stakeholders, reversibility, trade-offs, and credible failure modes? | decision-review module, pre-mortem, red-team prompt |
 | Artifact and feedback | What will survive the meeting, who owns it, and what feedback can change the next move? | artifact brief, acceptance criteria, feedback log |
 
-The toolkit is deliberately narrower than a project-management system and broader than a note-taking template. It does not replace domain expertise, legal review, security review, or accountable judgment. It makes the structure of those conversations inspectable.
+The toolkit does not manage project progress or replace domain expertise, legal review, security review, or accountable judgment. It helps the author place evidence, judgment, alternatives, and follow-up action in one reviewable packet.
 
 ---
 
-## When research needs to become a decision
+## Use it when research must support a decision
 
-Use it when the problem sounds like this:
-
-> I did a lot of research but I am not sure what decision it supports, what artifact it should become, or whether anyone else even cares.
+Use the workflow when you have done substantial research but cannot yet state the decision it supports, the artifact it should produce, or who needs to act on it.
 
 The workflow helps you:
 
