@@ -96,7 +96,7 @@ The workflow helps you:
 | CI | [`.github/workflows/validate.yml`](.github/workflows/validate.yml) | Active GitHub Actions validation workflow (Python 3.9/3.11/3.12), published from [`docs/github_actions_validate.template.yml`](docs/github_actions_validate.template.yml) |
 | Method boundary | [`docs/method_status.md`](docs/method_status.md) | Explain what the score can and cannot establish |
 | AI deployment context | [`docs/using_r2d_after_ai_prototype_review.md`](docs/using_r2d_after_ai_prototype_review.md) | Show how a prototype-readiness assessment becomes a separate human decision packet |
-| Quickstart | [`docs/quickstart.md`](docs/quickstart.md) | 10 minutes to first decision brief |
+| Quickstart | [`docs/quickstart.md`](docs/quickstart.md) | Create and validate a first fictional decision brief |
 | Sources | [`SOURCES.md`](SOURCES.md) | Where the method comes from |
 | Roadmap | [`docs/roadmap.md`](docs/roadmap.md) | What this repo will become next |
 
