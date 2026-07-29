@@ -146,7 +146,7 @@ The CLI checks structural completeness in four areas of six points each. Three v
 
 ```mermaid
 flowchart TB
-    subgraph areas["Four areas, 6 points each — 24 total"]
+    subgraph areas["Four areas, 6 points each; 24 total"]
         A1["Decision framing<br/>decision, body, default outcome,<br/>deadline, 3+ claims, 3+ uncertainties"]
         A2["Evidence quality<br/>2+ human-checked primary sources,<br/>weakest link named per claim"]
         A3["Decision review<br/>2+ alternatives, criteria, stakeholders,<br/>reversibility, trade-off, pre-mortem"]
