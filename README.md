@@ -7,6 +7,8 @@
 
 [中文说明](README.zh-CN.md)
 
+For project status, scope, feedback, and public-material boundaries, see [`STATUS.md`](STATUS.md).
+
 <p align="center">
   <img src="assets/r2d-overview.svg" alt="Research-to-Decision Toolkit: research, evidence, judgment, decision and feedback" width="100%">
 </p>
