@@ -1,29 +1,29 @@
 # Judgment Writing Module
 
-Judgment writing treats expression as the last quality gate, not the first:
+Judgment writing comes after the author has examined research sufficiency, claim strength, evidence fit, and structure.
 
 ```text
 research sufficiency → claim strength → evidence fit → structure → wording → delivery
 ```
 
-The module is an author-designed synthesis for research, policy, governance, and product-decision artifacts. It is **not** a universal writing theory, automatic quality score, or permission to overstate a conclusion.
+This module is an author-designed synthesis for research, policy, governance, and product-decision artifacts. It records a review process; it does not provide a universal writing theory, an automatic quality score, or grounds for strengthening a conclusion.
 
 ## Two paths
 
-- **Path A — write now:** the decision, audience, evidence, and claim boundary are clear enough to draft, review, and deliver.
-- **Path B — return to research:** an important claim still lacks evidence, a competing explanation remains unresolved, or the action boundary cannot yet be stated. Gather evidence or downgrade the claim before drafting.
+- **Path A: write now:** the decision, audience, evidence, and claim boundary are clear enough to draft, review, and deliver.
+- **Path B: return to research:** an important claim still lacks evidence, a competing explanation remains unresolved, or the action boundary cannot yet be stated. Gather evidence or downgrade the claim before drafting.
 
 `writing_review.path` records the **current disposition at review completion**, not an immutable history flag. If Path B work is completed and the packet is then supportable, the final reviewed record should use Path A; the five pass findings preserve what was corrected.
 
-Choosing Path B is not failure. It prevents polished prose from hiding weak cognition or evidence.
+Path B records that the author should return to research before drafting. It prevents polished prose from concealing a weak judgment or missing evidence.
 
 ## Five ordered passes
 
-1. **Judgment** — Is the conclusion stronger than the available evidence?
-2. **Evidence** — Can each material claim be traced, challenged, and revised?
-3. **Structure** — Does the sequence move from problem to inference to action?
-4. **Clarity** — Are key terms, sentences, and transitions unambiguous for the intended reader?
-5. **Delivery** — Will the artifact survive the author, reach the reader, and generate reviewable feedback?
+1. **Judgment**: Is the conclusion stronger than the available evidence?
+2. **Evidence**: Can each material claim be traced, challenged, and revised?
+3. **Structure**: Does the sequence move from problem to inference to action?
+4. **Clarity**: Are key terms, sentences, and transitions unambiguous for the intended reader?
+5. **Delivery**: Will the artifact survive the author, reach the reader, and generate reviewable feedback?
 
 The passes are ordered because later editing must not disguise an earlier failure. Do not begin with tone polishing when the real defect is unsupported judgment.
 
